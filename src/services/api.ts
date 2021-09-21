@@ -29,8 +29,23 @@ const registerUser = (newUser: INewUser) => {
     .catch((err) => err);
 };
 
+const getAllProducts = (token: string) => {
+  const endpoint = `${URL}/customer/products`;
+  return fetch(endpoint, {
+    method: 'GET',
+    headers: {
+      'Content-Type': CONTENT,
+      authorization: token,
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => data)
+    .catch((err) => err);
+};
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   loginUser,
   registerUser,
+  getAllProducts,
 };

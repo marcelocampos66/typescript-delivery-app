@@ -32,19 +32,10 @@ const Login: React.FC = () => {
     administrator: '/admin/manage',
   };
 
-  const getPathToRedirect = (role: string) => {
-    if (role === 'customer') {
-      return userRedirect.customer;
-    }
-    if (role === 'seller') {
-      return userRedirect.seller;
-    }
-    if (role === 'administrator') {
-      return userRedirect.administrator;
-    }
+  const getPathToRedirect = (role: role) => {
+    return userRedirect[role];
   } 
 
-  
   const history = useHistory();
 
   const verifyIfAlreadyLogged = () => {
@@ -59,7 +50,7 @@ const Login: React.FC = () => {
 
   useEffect(() => {
     verifyIfAlreadyLogged();
-  });
+  }, []);
 
   useEffect(() => {
     verifyLoginCredentials();

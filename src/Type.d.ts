@@ -3,13 +3,17 @@ interface IAppContext {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   errorMessage: string;
   setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
+  products: Array<IProduct> | [];
+  setProducts: React.Dispatch<React.SetStateAction<IProduct[]>>;
+  cart: Array<ICartItem> | [];
+  setCart: React.Dispatch<React.SetStateAction<ICartItem[]>>;
 }
 
 interface IUser {
   email: string;
   id: number;
   name: string;
-  role: string;
+  role: role;
   token: string;
 }
 
@@ -31,7 +35,26 @@ interface IUserRedirect {
   administrator: string;
 }
 
+interface IProduct {
+  id: number;
+  name: string;
+  price: string;
+  url_image: string;
+}
+
+interface ICartItem {
+  id: number;
+  name: string;
+  quantity: number;
+  subTotal: number;
+  unitPrice: number;
+}
+
 type onChange = (e: React.ChangeEvent<HTMLInputElement>) => void
+
+type onClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+
+type role = 'customer' | 'seller' | 'administrator'
 
 interface IStorage extends Storage {
   getItem(key: string): string | null;

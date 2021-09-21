@@ -5,6 +5,10 @@ export const DEFAULT_STATE = {
   setLoading: () => {},
   errorMessage: '',
   setErrorMessage: () => {},
+  products: [],
+  setProducts: () => {},
+  cart: [],
+  setCart: () => {},
 };
 
 const AppContext = createContext<IAppContext>(DEFAULT_STATE);
