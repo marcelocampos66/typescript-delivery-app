@@ -50,9 +50,24 @@ interface ICartItem {
   unitPrice: number;
 }
 
+interface ISeller {
+  id: number;
+  name: string;
+}
+
+interface IOrderData {
+  address: string;
+  addressNumber: string;
+  sellerId: number;
+  totalCart: number;
+  userId: number;
+}
+
 type onChange = (e: React.ChangeEvent<HTMLInputElement>) => void
 
 type onClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+
+type onChangeDropDown = (e: React.ChangeEvent<HTMLSelectElement>) => void
 
 type role = 'customer' | 'seller' | 'administrator'
 

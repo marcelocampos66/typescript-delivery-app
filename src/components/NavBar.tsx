@@ -11,15 +11,15 @@ const Navbar: React.FC<Props> = ({ role, name }) => {
 
   const fieldsByRole = {
     customer: {
-      text: 'MEUS PEDIDOS',
+      text: 'MY ORDERS',
       link: '/customer/orders',
     },
     seller: {
-      text: 'PEDIDOS',
+      text: 'ORDERS',
       link: '/seller/orders',
     },
     administrator: {
-      text: 'GERENCIAR USUÁRIOS',
+      text: 'USER MANAGEMENT',
       link: '/admin/manage',
     },
   };
@@ -43,7 +43,7 @@ const Navbar: React.FC<Props> = ({ role, name }) => {
           role === 'customer' && (
             <Link to="/customer/products">
               <button>
-                PRODUTOS
+                PRODUCTS
               </button>
             </Link>
           )
@@ -65,7 +65,7 @@ const Navbar: React.FC<Props> = ({ role, name }) => {
         <button
           onClick={ () => logout() }
         >
-          Sair
+          LOGOUT
         </button>
       </div>
     </nav>

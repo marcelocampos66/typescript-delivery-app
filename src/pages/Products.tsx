@@ -1,42 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Navbar from '../components/NavBar';
 import CardList from '../components/CardList';
 import CartButton from '../components/CartButton';
-// import AppContext from '../context/AppContext';
+import Helpers from '../helpers/Helpers';
 
 const Products: React.FC = () => {
   const [userData, setUserData] = useState<IUser | null>();
   const [loading, setLoading] = useState(true);
+  const history = useHistory();
 
-  const getDataFromStorage = () => {
-    const content = localStorage.getItem('user');
-    if (content) {
-      const data = JSON.parse(content) as IUser;
-      setUserData(data);
+  const getUserData = () => {
+    const data = Helpers.getDataFromStorage();
+    if (!data) {
+      history.push('/login');
     }
+    setUserData(data);
   }
 
   useEffect(() => {
-    getDataFromStorage();
+    getUserData();
     setLoading(false);
   }, []);
 
   if (loading) return <p>Loading...</p>;
-  
-  if (!userData) {
-    return <Redirect to="/login" />;
-  }
 
   return (
-    <div>
+    <main>
       <Navbar
-        role={ userData.role }
-        name={ userData.name }
+        role={ userData!.role }
+        name={ userData!.name }
       />
       <CartButton />
       <CardList />
-    </div>
+    </main>
   );
 };
 

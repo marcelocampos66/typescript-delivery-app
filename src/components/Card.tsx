@@ -1,5 +1,5 @@
 import React from 'react';
-import helpers from '../helpers/helpers';
+import Helpers from '../helpers/Helpers';
 
 interface Props {
   product: IProduct;
@@ -26,7 +26,7 @@ const Card: React.FC<Props> = ({ product, handleClick }) => {
   return (
     <div>
       <p>
-        { helpers.formatPrice(price) }
+        { Helpers.formatPrice(price) }
       </p>
       <img
         src={ image }

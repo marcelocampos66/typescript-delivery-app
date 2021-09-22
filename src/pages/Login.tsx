@@ -2,9 +2,8 @@ import React, { useEffect, useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import AppContext from '../context/AppContext';
 import TextInput from '../components/TextInput';
-import LargeButton from '../components/LargeButton';
 import logoDelivery from '../images/DeliveryFast.png';
-import api from '../services/api';
+import Api from '../services/Api';
 
 const Login: React.FC = () => {
   const [loginData, setLoginData] = useState({ email: '', password: '' });
@@ -61,7 +60,7 @@ const Login: React.FC = () => {
   };
 
   const handleClick = async () => {
-    const result = await api.loginUser(loginData);
+    const result = await Api.login(loginData);
     if (result.error) {
       setErrorMessage(result.error.message);
     } else {
@@ -85,15 +84,14 @@ const Login: React.FC = () => {
   );
 
   return (
-    <main className="content-login-register">
+    <main>
       <img
         src={ logoDelivery }
-        alt="Um homem de mascara andando de moto, levando bebidas"
+        alt="delivery"
         style={{ width: '250px', height: '200px' }}
       />
-
-      <section className="fundo-login-register">
-        <h1 className="title-login-register">Bem vindo(a)!</h1>
+      <section>
+        <h1>Bem vindo(a)!</h1>
         <TextInput
           type="text"
           name="email"
@@ -105,21 +103,24 @@ const Login: React.FC = () => {
           type="password"
           name="password"
           onChange={ (e: React.ChangeEvent<HTMLInputElement>) => handleChange(e) }
-          labelText="Senha"
+          labelText="Password"
           placeholderText="************"
         />
         {errorMessage && errorDivMessage}
-        <LargeButton
-          buttonText="LOGIN"
-          isDisabled={ disableButton }
+        <button
+          type="button"
+          disabled={ disableButton }
           onClick={ () => handleClick() }
-        />
+        >
+          Login
+        </button>
         <Link to="/register">
-          <LargeButton
-            buttonText="Ainda não tenho conta"
-            isDisabled={ false }
+          <button
+            type="button"
             onClick={ () => {} }
-          />
+          >
+            Register
+          </button>
         </Link>
       </section>
     </main>
