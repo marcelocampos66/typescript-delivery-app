@@ -1,50 +1,28 @@
 import React, { useEffect, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
-import api from '../services/api';
+import Api from '../services/Api';
 import Card from '../components/Card';
 import AppContext from '../context/AppContext';
+import Helpers from '../helpers/Helpers';
 
 const CardList: React.FC = () => {
   const { products, setProducts, cart, setCart } = useContext(AppContext);
-  const history = useHistory();
-
+  
   const getToken = () => {
-    const content = localStorage.getItem('user');
-    if (content) {
-      const user = JSON.parse(content) as IUser;
-      return user.token;
-    }
-    history.push('/login');
-  }
-
-  const getDataFromStorage = () => {
-    const content = localStorage.getItem('cart');
-    if (content) {
-      const data = JSON.parse(content) as Array<ICartItem> | [];
-      return data;
-    }
-    return [];
+    const data = Helpers.getDataFromStorage();
+    return data?.token;
   }
 
   const getProducts = async (token: string) => {
-    const data = await api.getAllProducts(token);
+    const data = await Api.getAllProducts(token);
     setProducts(data);
   }
-
-  const mountCartItem = (product: IProduct) => ({
-    id: product.id,
-    name: product.name,
-    quantity: 1,
-    subTotal: parseFloat(product.price),
-    unitPrice: parseFloat(product.price),
-  });
 
   useEffect(() => {
     if (!localStorage.getItem('cart')) {
       localStorage.setItem('cart', JSON.stringify([]));
     }
-    const cart = getDataFromStorage();
-    setCart(cart);
+    const shoppingCart = Helpers.getCartFromStorage();
+    setCart(shoppingCart);
     const token = getToken() as string;
     getProducts(token);
   }, []);
@@ -52,7 +30,7 @@ const CardList: React.FC = () => {
   const addOnCart = (productId: number) => {
     const currentProduct = products
         .find(({ id }) => id === productId) as unknown as IProduct;
-    const newCartItem = mountCartItem(currentProduct);
+    const newCartItem = Helpers.mountCartItem(currentProduct);
     setCart((prev) => {
       const newCart = [...prev, newCartItem];
       localStorage.setItem('cart', JSON.stringify(newCart));

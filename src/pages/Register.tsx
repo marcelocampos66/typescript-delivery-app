@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import api from '../services/api';
+import Api from '../services/Api';
 import TextInput from '../components/TextInput';
-import LargeButton from '../components/LargeButton';
 import inscricao from '../images/inscricao.png';
 
 const Register: React.FC = () => {
@@ -44,7 +43,7 @@ const Register: React.FC = () => {
   const history = useHistory();
 
   const handleClick = async () => {
-    const result = await api.registerUser(newUserData);
+    const result = await Api.registerUser(newUserData);
     if (result.error) {
       setErrorMessage(result.error.message);
     } else {
@@ -71,41 +70,43 @@ const Register: React.FC = () => {
   );
 
   return (
-    <main className="content-login-register">
+    <main>
       <img
         src={ inscricao }
-        alt="Uma mulher com um rostinho feliz andando de moto, levando bebidas"
+        alt="delivery"
         style={{ width: '250px', height: '200px' }}
       />
-      <section className="fundo-login-register">
-        <h1 className="title-login-register">Cadastro</h1>
+      <section>
+        <h1>Register</h1>
         <TextInput
           type="text"
           name="name"
           onChange={ (e: React.ChangeEvent<HTMLInputElement>) => handleChange(e) }
           labelText="Nome"
-          placeholderText="Nome completo"
+          placeholderText="Full name"
         />
         <TextInput
           type="text"
           name="email"
           onChange={ (e: React.ChangeEvent<HTMLInputElement>) => handleChange(e) }
           labelText="E-mail"
-          placeholderText="email desejado"
+          placeholderText="E-mail"
         />
         <TextInput
           type="password"
           name="password"
           onChange={ (e: React.ChangeEvent<HTMLInputElement>) => handleChange(e) }
-          labelText="Senha"
-          placeholderText="senha"
+          labelText="Password"
+          placeholderText="Password"
         />
         {errorMessage && errorDivMessage}
-        <LargeButton
-          buttonText="CADASTRAR"
+        <button
+          type="button"
           onClick={ () => handleClick() }
-          isDisabled={ disableButton }
-        />
+          disabled={ disableButton }
+        >
+          Register
+        </button>
       </section>
     </main>
   );

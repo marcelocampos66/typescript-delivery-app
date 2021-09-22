@@ -1,22 +1,22 @@
 import React, { useEffect, useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import AppContext from '../context/AppContext';
-import helpers from '../helpers/helpers';
+import Helpers from '../helpers/Helpers';
 
 const CartButton: React.FC = () => {
   const [totalCart, setTotalCart] = useState('R$ 0,00');
   const { cart } = useContext(AppContext);
+  const history = useHistory();
 
   const totalCartPrice = (cart: Array<ICartItem>) => {
-    if (cart.length === 0) {
-      setTotalCart(helpers.formatPrice('0'));
-      return;
-    }
-    const total = cart.reduce((total, product) => {
-      return total + product.subTotal;
-    }, 0);
-    setTotalCart(helpers.formatPrice(total.toString()));
+    const value = Helpers.getCartTotalPrice(cart);
+    setTotalCart(Helpers.formatPrice(value.toString()));
   };
 
+  const redirectToCheckout = () => {
+    history.push('/customer/checkout')
+  }
+  
   useEffect(() => {
     totalCartPrice(cart);
   }, [cart]);
@@ -25,6 +25,7 @@ const CartButton: React.FC = () => {
     <div>
       <button
         type="button"
+        onClick={ () => redirectToCheckout() }
       >
         { totalCart }
       </button>
