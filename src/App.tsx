@@ -4,6 +4,9 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Products from './pages/Products';
 import Checkout from './pages/Checkout';
+import Orders from './pages/Orders';
+import OrderDetails from './pages/OrderDetails';
+import AdminPanel from './pages/AdminPanel';
 import './App.css';
 
 function App() {
@@ -16,6 +19,11 @@ function App() {
       <Route path="/register" component={ Register } />
       <Route path="/customer/products" component={ Products } />
       <Route path="/customer/checkout" component={ Checkout } />
+      <Route path="/customer/orders/:id" component={ OrderDetails } />
+      <Route path="/seller/orders/:id" component={ OrderDetails } />
+      <Route path="/customer/orders" component={ Orders } />
+      <Route path="/seller/orders" component={ Orders } />
+      <Route path="/admin/manage" component={ AdminPanel } />
     </Switch>
   );
 }

@@ -80,6 +80,72 @@ class Api {
       .catch((err) => err);
   };
 
+  public getAllSales(token: string) {
+    const endpoint = `${this.url}/sales`;
+    return fetch(endpoint, {
+      method: 'GET',
+      headers: {
+        'Content-Type': this.content,
+        authorization: token,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => data)
+      .catch((err) => err);
+  };
+
+  public getSaleById(id: number) {
+    const endpoint = `${this.url}/sales/${id}`;
+    return fetch(endpoint, {
+      headers: {
+        'Content-Type': this.content,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => data)
+      .catch((err) => err);
+  };
+
+  public getSaleItems(id: number) {
+    const endpoint = `${this.url}/sales/items/${id}`;
+    return fetch(endpoint, {
+      headers: {
+        'Content-Type': this.content,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => data)
+      .catch((err) => err);
+  };
+
+  public changeOrderStatus(id: number, status: string) {
+    const endpoint = `${this.url}/sales/${id}`;
+    return fetch(endpoint, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': this.content,
+      },
+      body: JSON.stringify({ status }),
+    })
+      .then((response) => response.json())
+      .then((data) => data)
+      .catch((err) => err);
+  };
+
+  public getAllUsers() {
+    const endpoint = `${this.url}/users`;
+    return fetch(endpoint, {
+      method: 'GET',
+      headers: {
+        'Content-Type': this.content,
+        // authorization: token,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => data)
+      .catch((err) => err);
+  };
+
 }
 
 export default new Api();

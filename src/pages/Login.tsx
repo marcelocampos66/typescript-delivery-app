@@ -42,8 +42,7 @@ const Login: React.FC = () => {
     if (content) {
       const userData = JSON.parse(content) as IUser;
       const path = getPathToRedirect(userData.role);
-      console.log(path)
-      // history.push(path);
+      history.push(path);
     }
   };
 
