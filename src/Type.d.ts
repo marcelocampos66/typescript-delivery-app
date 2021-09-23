@@ -63,6 +63,54 @@ interface IOrderData {
   userId: number;
 }
 
+interface ISale {
+  id: number;
+  userId: number;
+  sellerId: number;
+  totalPrice: string;
+  deliveryAddress: string;
+  deliveryNumber: string;
+  saleDate: string;
+  status: string;
+  products: Array<IProduct>;
+}
+
+interface IUserId {
+  email: string;
+  id: number;
+  name: string;
+  role: string;
+}
+
+interface ISeller {
+  email: string;
+  id: number;
+  name: string;
+  role: string;
+}
+
+interface ISaleById {
+  deliveryAddress: string;
+  deliveryNumber: string;
+  id: number;
+  products: Array<IProductWithQty>;
+  saleDate: string;
+  sellerId: number;
+  status: string;
+  totalPrice: string;
+  userId: number;
+  user: IUserId;
+  seller: ISeller;
+}
+
+interface IProductWithQty {
+  id: number;
+  name: string;
+  price: string;
+  url_image: string;
+  salesProducts: { quantity: number; };
+}
+
 type onChange = (e: React.ChangeEvent<HTMLInputElement>) => void
 
 type onClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
@@ -70,9 +118,3 @@ type onClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 type onChangeDropDown = (e: React.ChangeEvent<HTMLSelectElement>) => void
 
 type role = 'customer' | 'seller' | 'administrator'
-
-interface IStorage extends Storage {
-  getItem(key: string): string | null;
-  setItem(key: string, value: string): void;
-  removeItem(key: string): void;
-}

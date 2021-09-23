@@ -30,7 +30,7 @@ const CartTable: React.FC<Props> = ({ cart }) => {
       </thead>
       <tbody>
         {cart.map((item, index) => (
-          <tr key={ index }>
+          <tr key={ item.id }>
             <td>{index + 1}</td>
             <td>{item.name}</td>
             <td>{item.quantity}</td>

@@ -45,6 +45,27 @@ class Helpers {
     return parseFloat(total.toFixed(2));
   }
 
+  public formatRole([initial, ...rest]: string) {
+    return [initial.toUpperCase(), ...rest].join("");
+  }
+
+  public mountProp (role: string, sale: ISale) {
+    return  ({
+      role,
+      ...sale,
+    });
+  }
+
+  public formatOrderNumber(number: number) {
+    const MAX_LENGTH = 4;
+    const string = number.toString();
+    return '0'.repeat(MAX_LENGTH - string.length) + number;
+  };
+
+  public formatDate(date: string) {
+    return new Date(date).toLocaleString('pt-BR');
+  }
+  
 }
 
 export default new Helpers();
