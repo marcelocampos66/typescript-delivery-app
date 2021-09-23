@@ -7,6 +7,10 @@ interface IAppContext {
   setProducts: React.Dispatch<React.SetStateAction<IProduct[]>>;
   cart: Array<ICartItem> | [];
   setCart: React.Dispatch<React.SetStateAction<ICartItem[]>>;
+  newUser: INewUser;
+  setNewUser: React.Dispatch<React.SetStateAction<INewUser>>;
+  usersList: Array<IUserId> | [];
+  setUsersList: React.Dispatch<React.SetStateAction<Array<IUserId>>>;
 }
 
 interface IUser {
@@ -79,7 +83,7 @@ interface IUserId {
   email: string;
   id: number;
   name: string;
-  role: string;
+  role: role;
 }
 
 interface ISeller {
@@ -111,6 +115,12 @@ interface IProductWithQty {
   salesProducts: { quantity: number; };
 }
 
+interface IInputs {
+  name: keyName;
+  type: string;
+  placeholder: string;
+}
+
 type onChange = (e: React.ChangeEvent<HTMLInputElement>) => void
 
 type onClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
@@ -118,3 +128,5 @@ type onClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 type onChangeDropDown = (e: React.ChangeEvent<HTMLSelectElement>) => void
 
 type role = 'customer' | 'seller' | 'administrator'
+
+type keyName = 'name' | 'email' | 'password'

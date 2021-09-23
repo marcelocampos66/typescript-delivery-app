@@ -132,14 +132,42 @@ class Api {
       .catch((err) => err);
   };
 
-  public getAllUsers() {
+  public getAllUsers(token: string) {
     const endpoint = `${this.url}/users`;
     return fetch(endpoint, {
       method: 'GET',
       headers: {
         'Content-Type': this.content,
-        // authorization: token,
+        authorization: token,
       },
+    })
+      .then((response) => response.json())
+      .then((data) => data)
+      .catch((err) => err);
+  };
+
+  public removeUserById(id: number) {
+    const endpoint = `${this.url}/users/${id}`;
+    return fetch(endpoint, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': this.content,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => data)
+      .catch((err) => err);
+  };
+
+  public registerUserWithAdmin(newUser: INewUser, token: string) {
+    const endpoint = `${this.url}/admin/register`;
+    return fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': this.content,
+        authorization: token,
+      },
+      body: JSON.stringify({ ...newUser }),
     })
       .then((response) => response.json())
       .then((data) => data)

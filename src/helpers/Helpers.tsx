@@ -45,7 +45,7 @@ class Helpers {
     return parseFloat(total.toFixed(2));
   }
 
-  public formatRole([initial, ...rest]: string) {
+  public uppercaseFirstLetter([initial, ...rest]: string) {
     return [initial.toUpperCase(), ...rest].join("");
   }
 
@@ -65,6 +65,20 @@ class Helpers {
   public formatDate(date: string) {
     return new Date(date).toLocaleString('pt-BR');
   }
+
+  public verifyNewUserCredentials(newUser: INewUser) {
+    const { name, email, password, role } = newUser;
+    const minPasswordLength = 6;
+    const minNameLength = 4;
+    const emailRegex = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i;
+    if (name.length < minNameLength
+      || !emailRegex.test(email)
+      || password.length < minPasswordLength
+      || !role ) {
+      return true;
+    }
+    return false;
+  };
   
 }
 

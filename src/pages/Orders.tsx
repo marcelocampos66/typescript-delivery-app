@@ -36,7 +36,7 @@ const Orders: React.FC= () => {
 
   if (loading) return <h1>Loading...</h1>;
 
-  socket.on(`update${Helpers.formatRole(userData!.role)}`, () => {
+  socket.on(`update${userData!.role}`, () => {
     setInitialInfos();
   });
 
