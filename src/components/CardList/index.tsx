@@ -1,8 +1,8 @@
 import React, { useEffect, useContext } from 'react';
-import Api from '../services/Api';
-import Card from '../components/Card';
-import AppContext from '../context/AppContext';
-import Helpers from '../helpers/Helpers';
+import Api from '../../services/Api';
+import Card from '../ProductCard';
+import AppContext from '../../context/AppContext';
+import Helpers from '../../helpers/Helpers';
 
 const CardList: React.FC = () => {
   const { products, setProducts, cart, setCart } = useContext(AppContext);
@@ -45,7 +45,6 @@ const CardList: React.FC = () => {
       const { quantity } = updateProduct;
       const newQuantity = quantity + 1
       updateProduct.quantity = newQuantity;
-      // updateProduct.subTotal = newQuantity * price;
       localStorage.setItem('cart', JSON.stringify(newCart));
       return [...newCart];
     });
@@ -63,7 +62,6 @@ const CardList: React.FC = () => {
       }
       const newQuantity = quantity - 1
       updateProduct.quantity = newQuantity;
-      // updateProduct.subTotal = newQuantity * price;
       localStorage.setItem('cart', JSON.stringify(newCart));
       return [...newCart];
     });

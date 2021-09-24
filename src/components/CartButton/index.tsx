@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import AppContext from '../context/AppContext';
-import Helpers from '../helpers/Helpers';
+import AppContext from '../../context/AppContext';
+import Helpers from '../../helpers/Helpers';
 
 const CartButton: React.FC = () => {
   const [totalCart, setTotalCart] = useState('R$ 0,00');

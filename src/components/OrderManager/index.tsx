@@ -1,5 +1,5 @@
 import React from 'react';
-import Helpers from '../helpers/Helpers';
+import Helpers from '../../helpers/Helpers';
 
 interface Props {
   sale: ISaleById;

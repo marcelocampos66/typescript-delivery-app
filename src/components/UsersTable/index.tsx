@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import AppContext from '../context/AppContext';
-import Api from '../services/Api';
-import Helpers from '../helpers/Helpers';
+import AppContext from '../../context/AppContext';
+import Api from '../../services/Api';
+import Helpers from '../../helpers/Helpers';
 
 interface Props {
   users: Array<IUserId>;

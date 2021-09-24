@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { io } from "socket.io-client";
 import NavBar from '../components/NavBar';
 import OrderManager from '../components/OrderManager';
-import ProductsTable from '../components/Table';
+import ProductsTable from '../components/ProductsTable';
 import Api from '../services/Api';
 import Helpers from '../helpers/Helpers';
 

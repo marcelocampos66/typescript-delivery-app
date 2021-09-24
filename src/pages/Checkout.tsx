@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import AppContext from '../context/AppContext';
 import Navbar from '../components/NavBar';
-import ProductsTable from '../components/Table';
+import ProductsTable from '../components/ProductsTable';
 import CheckoutForm from '../components/CheckoutForm';
 import Helpers from '../helpers/Helpers';
 import Api from '../services/Api';
