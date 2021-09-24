@@ -5,6 +5,7 @@ interface Props {
   options: Array<ISeller>;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   labelText: string;
+  value: string;
 }
 
 const DropDown: React.FC<Props> = ({
@@ -12,6 +13,7 @@ const DropDown: React.FC<Props> = ({
   options,
   onChange,
   labelText,
+  value,
 }) => {
   return (
     <label htmlFor={ name }>
@@ -20,6 +22,7 @@ const DropDown: React.FC<Props> = ({
         name={ name }
         id={ name }
         onChange={ onChange }
+        value={ value }
       >
         <option value="">
           Select Seller

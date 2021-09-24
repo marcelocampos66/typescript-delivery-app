@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import AppContext from '../../context/AppContext';
 import Helpers from '../../helpers/Helpers';
 import Api from '../../services/Api';
@@ -11,7 +12,13 @@ interface Props {
 
 const FormNewUser: React.FC<Props> = ({ select }) => {
   const [disable, setDisable] = useState(true);
-  const { newUser, setNewUser, setUsersList } = useContext(AppContext);
+  const {
+    newUser,
+    setNewUser,
+    setUsersList,
+    setErrorMessage,
+  } = useContext(AppContext);
+  const history = useHistory();
 
   const disableButton = () => {
     const verify = Helpers.verifyNewUserCredentials(newUser);
@@ -19,9 +26,6 @@ const FormNewUser: React.FC<Props> = ({ select }) => {
   }
 
   useEffect(() => {
-    if (!select) {
-      setNewUser({ ...newUser, role: 'Customer' });
-    }
     disableButton();
   }, [newUser]);
 
@@ -35,7 +39,17 @@ const FormNewUser: React.FC<Props> = ({ select }) => {
 
   const handleClick = async () => {
     const adminData = Helpers.getDataFromStorage() as IUser;
-    await Api.registerUserWithAdmin(newUser, adminData.token);
+    const result = await Api.registerUser(newUser);
+    if (result.error) {
+      setErrorMessage(result.error.message);
+      return;
+    }
+    if (history.location.pathname === '/register') {
+      localStorage.setItem('user', JSON.stringify(result));
+      setNewUser(DEFAULT_STATE.newUser);
+      history.push('/customer/products');
+      return;
+    }
     const newList = await Api.getAllUsers(adminData.token);
     setUsersList(newList);
     setNewUser(DEFAULT_STATE.newUser);

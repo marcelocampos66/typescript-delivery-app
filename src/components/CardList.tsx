@@ -42,10 +42,10 @@ const CardList: React.FC = () => {
     setCart((prev) => {
       const newCart = [...prev];
       const updateProduct = newCart.find((product) => product.id === productId) as ICartItem;
-      const { quantity, unitPrice } = updateProduct;
+      const { quantity } = updateProduct;
       const newQuantity = quantity + 1
       updateProduct.quantity = newQuantity;
-      updateProduct.subTotal = newQuantity * unitPrice;
+      // updateProduct.subTotal = newQuantity * price;
       localStorage.setItem('cart', JSON.stringify(newCart));
       return [...newCart];
     });
@@ -55,7 +55,7 @@ const CardList: React.FC = () => {
     setCart((prev) => {
       const newCart = [...prev];
       const updateProduct = newCart.find((product) => product.id === productId) as ICartItem;
-      const { quantity, unitPrice } = updateProduct;
+      const { quantity } = updateProduct;
       if (quantity === 1) {
         const newArr = newCart.filter((product) => product.id !== productId)
         localStorage.setItem('cart', JSON.stringify(newArr));
@@ -63,7 +63,7 @@ const CardList: React.FC = () => {
       }
       const newQuantity = quantity - 1
       updateProduct.quantity = newQuantity;
-      updateProduct.subTotal = newQuantity * unitPrice;
+      // updateProduct.subTotal = newQuantity * price;
       localStorage.setItem('cart', JSON.stringify(newCart));
       return [...newCart];
     });

@@ -30,8 +30,7 @@ class Helpers {
       id: product.id,
       name: product.name,
       quantity: 1,
-      subTotal: parseFloat(product.price),
-      unitPrice: parseFloat(product.price),
+      price: product.price,
     });
   }
 
@@ -40,7 +39,8 @@ class Helpers {
       return 0;
     }
     const total = cart.reduce((total, product) => {
-      return total + product.subTotal;
+      const subTotal = parseFloat(product.price) * product.quantity;
+      return total + subTotal;
     }, 0);
     return parseFloat(total.toFixed(2));
   }
@@ -78,6 +78,59 @@ class Helpers {
       return true;
     }
     return false;
+  };
+
+  public verifyLoginCredentials(loginData: IUserCredentials) {
+    const { email, password } = loginData;
+    const minPasswordLength = 6;
+    const emailRegex = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i;
+    if (!emailRegex.test(email)) {
+      return true;
+    }
+    if (password.length < minPasswordLength) {
+      return true;
+    }
+    return false;
+  };
+
+  public verifySaleData(saleInfo: ISaleInfo, cartLength: number) {
+    const { address, addressNumber, sellerId } = saleInfo;
+    if (!address || !addressNumber || !sellerId || cartLength === 0) {
+      return true;
+    }
+    return false;
+  };
+
+  public formatProducts(products: Array<IProductWithQty>) {
+    const result = products.map((product) => ({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      quantity: product.salesProducts.quantity,
+    }));
+    return result;
+  }
+
+  public getPathToRedirect(role: role) {
+    const userRedirect: IUserRedirect = {
+      customer: '/customer/products',
+      seller: '/seller/orders',
+      administrator: '/admin/manage',
+    };
+    return userRedirect[role];
+  }
+
+  public mountSaleData(
+    saleInfo: ISaleInfo,
+    userId: number,
+    cart: Array<ICartItem>
+  ) {
+    return ({
+      ...saleInfo,
+      sellerId: Number(saleInfo.sellerId),
+      userId,
+      totalCart: this.getCartTotalPrice(cart),
+    })
   };
   
 }

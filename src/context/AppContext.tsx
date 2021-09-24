@@ -4,7 +4,12 @@ const newUserInitialState = {
   name: '',
   email: '',
   password: '',
-  role: '',
+  role: 'customer',
+};
+
+const loginInitialState = {
+  email: '',
+  password: '',
 };
 
 export const DEFAULT_STATE = {
@@ -20,6 +25,8 @@ export const DEFAULT_STATE = {
   setNewUser: () => {},
   usersList: [],
   setUsersList: () => {},
+  loginData: loginInitialState,
+  setLoginData: () => {},
 };
 
 const AppContext = createContext<IAppContext>(DEFAULT_STATE);
