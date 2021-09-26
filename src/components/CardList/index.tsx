@@ -1,8 +1,8 @@
 import React, { useEffect, useContext } from 'react';
-import Api from '../services/Api';
-import Card from '../components/Card';
-import AppContext from '../context/AppContext';
-import Helpers from '../helpers/Helpers';
+import Api from '../../services/Api';
+import Card from '../ProductCard';
+import AppContext from '../../context/AppContext';
+import Helpers from '../../helpers/Helpers';
 
 const CardList: React.FC = () => {
   const { products, setProducts, cart, setCart } = useContext(AppContext);
@@ -42,10 +42,9 @@ const CardList: React.FC = () => {
     setCart((prev) => {
       const newCart = [...prev];
       const updateProduct = newCart.find((product) => product.id === productId) as ICartItem;
-      const { quantity, unitPrice } = updateProduct;
+      const { quantity } = updateProduct;
       const newQuantity = quantity + 1
       updateProduct.quantity = newQuantity;
-      updateProduct.subTotal = newQuantity * unitPrice;
       localStorage.setItem('cart', JSON.stringify(newCart));
       return [...newCart];
     });
@@ -55,7 +54,7 @@ const CardList: React.FC = () => {
     setCart((prev) => {
       const newCart = [...prev];
       const updateProduct = newCart.find((product) => product.id === productId) as ICartItem;
-      const { quantity, unitPrice } = updateProduct;
+      const { quantity } = updateProduct;
       if (quantity === 1) {
         const newArr = newCart.filter((product) => product.id !== productId)
         localStorage.setItem('cart', JSON.stringify(newArr));
@@ -63,7 +62,6 @@ const CardList: React.FC = () => {
       }
       const newQuantity = quantity - 1
       updateProduct.quantity = newQuantity;
-      updateProduct.subTotal = newQuantity * unitPrice;
       localStorage.setItem('cart', JSON.stringify(newCart));
       return [...newCart];
     });

@@ -1,47 +1,19 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useEffect, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import AppContext from '../context/AppContext';
-import TextInput from '../components/TextInput';
+import FormLogin from '../components/FormLogin';
 import logoDelivery from '../images/DeliveryFast.png';
-import Api from '../services/Api';
+import Helpers from '../helpers/Helpers';
 
 const Login: React.FC = () => {
-  const [loginData, setLoginData] = useState({ email: '', password: '' });
-  const [disableButton, setDisableButton] = useState(true);
   const { errorMessage, setErrorMessage } = useContext(AppContext);
-
-  const verifyLoginCredentials = () => {
-    const { email, password } = loginData;
-    const minPasswordLength = 6;
-    const emailRegex = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i;
-    if (!emailRegex.test(email)) {
-      setDisableButton(true);
-      return;
-    }
-    if (password.length < minPasswordLength) {
-      setDisableButton(true);
-      return;
-    }
-    setDisableButton(false);
-  };
-
-  const userRedirect: IUserRedirect = {
-    customer: '/customer/products',
-    seller: '/seller/orders',
-    administrator: '/admin/manage',
-  };
-
-  const getPathToRedirect = (role: role) => {
-    return userRedirect[role];
-  } 
-
   const history = useHistory();
 
   const verifyIfAlreadyLogged = () => {
     const content = localStorage.getItem('user');
     if (content) {
       const userData = JSON.parse(content) as IUser;
-      const path = getPathToRedirect(userData.role);
+      const path = Helpers.getPathToRedirect(userData.role);
       history.push(path);
     }
   };
@@ -50,27 +22,7 @@ const Login: React.FC = () => {
     verifyIfAlreadyLogged();
   }, []);
 
-  useEffect(() => {
-    verifyLoginCredentials();
-  }, [loginData]);
-
-  const handleChange: onChange = ({ target: { value, name } }) => {
-    setLoginData({ ...loginData, [name]: value });
-  };
-
-  const handleClick = async () => {
-    const result = await Api.login(loginData);
-    if (result.error) {
-      setErrorMessage(result.error.message);
-    } else {
-      setErrorMessage('');
-      localStorage.setItem('user', JSON.stringify(result));
-      const path = getPathToRedirect(result.role) as string;
-      history.push(path);
-    }
-  };
-
-  const errorDivMessage = (
+  const errorDivMessage = () => (
     <div>
       <p>{ errorMessage }</p>
       <button
@@ -91,36 +43,8 @@ const Login: React.FC = () => {
       />
       <section>
         <h1>Bem vindo(a)!</h1>
-        <TextInput
-          type="text"
-          name="email"
-          onChange={ (e: React.ChangeEvent<HTMLInputElement>) => handleChange(e) }
-          labelText="Login"
-          placeholderText="email@appdelivery.com.br"
-        />
-        <TextInput
-          type="password"
-          name="password"
-          onChange={ (e: React.ChangeEvent<HTMLInputElement>) => handleChange(e) }
-          labelText="Password"
-          placeholderText="************"
-        />
-        {errorMessage && errorDivMessage}
-        <button
-          type="button"
-          disabled={ disableButton }
-          onClick={ () => handleClick() }
-        >
-          Login
-        </button>
-        <Link to="/register">
-          <button
-            type="button"
-            onClick={ () => {} }
-          >
-            Register
-          </button>
-        </Link>
+        <FormLogin />
+        { errorMessage && errorDivMessage() }
       </section>
     </main>
   );

@@ -11,6 +11,8 @@ interface IAppContext {
   setNewUser: React.Dispatch<React.SetStateAction<INewUser>>;
   usersList: Array<IUserId> | [];
   setUsersList: React.Dispatch<React.SetStateAction<Array<IUserId>>>;
+  loginData: IUserCredentials;
+  setLoginData: React.Dispatch<React.SetStateAction<IUserCredentials>>;
 }
 
 interface IUser {
@@ -50,8 +52,7 @@ interface ICartItem {
   id: number;
   name: string;
   quantity: number;
-  subTotal: number;
-  unitPrice: number;
+  price: string;
 }
 
 interface ISeller {
@@ -77,6 +78,12 @@ interface ISale {
   saleDate: string;
   status: string;
   products: Array<IProduct>;
+}
+
+interface ISaleInfo {
+  address: string;
+  addressNumber: string;
+  sellerId: string;
 }
 
 interface IUserId {

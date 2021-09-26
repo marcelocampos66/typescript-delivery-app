@@ -17,7 +17,7 @@ const OrderDetails: React.FC<Props> = ({ match: { params: { id } } }) => {
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState<IUser>();
   const [sale, setSale] = useState<ISaleById>();
-  const [products, setProducts] = useState<Array<IProductWithQty>>();
+  const [products, setProducts] = useState<Array<ICartItem>>();
   const history = useHistory();
 
   const getUserInfo = () => {
@@ -30,8 +30,9 @@ const OrderDetails: React.FC<Props> = ({ match: { params: { id } } }) => {
 
   const getSaleInfo = async (id: string) => {
     const data = await Api.getSaleById(Number(id));
+    const formatedProducts = Helpers.formatProducts(data.products)
     setSale(data);
-    setProducts(data.products)
+    setProducts(formatedProducts);
     setLoading(false);
   }
 
@@ -41,14 +42,6 @@ const OrderDetails: React.FC<Props> = ({ match: { params: { id } } }) => {
   }, []);
 
   if (loading) return <p>Loading...</p>;
-
-  const sumTotal = (products: Array<IProductWithQty>) => {
-    const result = products.reduce((total: number, product) => {
-      const subTotal = product.salesProducts.quantity * parseFloat(product.price);
-      return total + subTotal;
-    }, 0)
-    return result.toString();
-  }
 
   const handleClick = async (status: string) => {
     await Api.changeOrderStatus(sale!.id, status);
@@ -68,8 +61,14 @@ const OrderDetails: React.FC<Props> = ({ match: { params: { id } } }) => {
         role={ userData!.role }
         onClick={ handleClick }
       />
-      <ProductsTable products={ products as Array<IProductWithQty> }/>
-      <p>{ `Total: ${Helpers.formatPrice(sumTotal(products!))}` }</p>
+      <ProductsTable  products={ products! } remove={ false } />
+      <p>
+        {
+          `Total: ${Helpers.formatPrice(
+            Helpers.getCartTotalPrice(products!).toString(),
+          )}`
+        }
+      </p>
     </main>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Helpers from '../helpers/Helpers';
+import Helpers from '../../helpers/Helpers';
  
 interface Props {
   sale: {

@@ -9,6 +9,7 @@ const Provider: React.FC = ({ children }) => {
   const [cart, setCart] = useState<Array<ICartItem> | []>(DEFAULT_STATE.cart);
   const [newUser, setNewUser] = useState<INewUser>(DEFAULT_STATE.newUser);
   const [usersList, setUsersList] = useState<Array<IUserId> | []>(DEFAULT_STATE.usersList);
+  const [loginData, setLoginData] = useState<IUserCredentials>(DEFAULT_STATE.loginData);
 
   const contextValue = {
     loading,
@@ -23,6 +24,8 @@ const Provider: React.FC = ({ children }) => {
     setNewUser,
     usersList,
     setUsersList,
+    loginData,
+    setLoginData,
   };
 
   return (
