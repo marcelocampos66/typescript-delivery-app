@@ -3,15 +3,15 @@ import Api from '../../services/Api';
 import Card from '../ProductCard';
 import AppContext from '../../context/AppContext';
 import Helpers from '../../helpers/Helpers';
+import Styled from './S.CardList';
 
-const CardList: React.FC = () => {
+interface Props {
+  token: string;
+}
+
+const CardList: React.FC<Props> = ({ token }) => {
   const { products, setProducts, cart, setCart } = useContext(AppContext);
   
-  const getToken = () => {
-    const data = Helpers.getDataFromStorage();
-    return data?.token;
-  }
-
   const getProducts = async (token: string) => {
     const data = await Api.getAllProducts(token);
     setProducts(data);
@@ -23,7 +23,6 @@ const CardList: React.FC = () => {
     }
     const shoppingCart = Helpers.getCartFromStorage();
     setCart(shoppingCart);
-    const token = getToken() as string;
     getProducts(token);
   }, []);
 
@@ -82,7 +81,7 @@ const CardList: React.FC = () => {
   }
 
   return (
-    <section>
+    <Styled.Section>
       {
         products.map((product) => (
           <Card
@@ -91,7 +90,7 @@ const CardList: React.FC = () => {
           />
         ))
       }
-    </section>
+    </Styled.Section>
   );
 }
 

@@ -32,7 +32,7 @@ const Products: React.FC = () => {
         name={ userData!.name }
       />
       <CartButton />
-      <CardList />
+      <CardList token={ userData!.token } />
     </main>
   );
 };

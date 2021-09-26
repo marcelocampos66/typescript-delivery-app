@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import Styled from './S.NavBar';
 
 interface Props {
   role: role;
@@ -37,38 +38,38 @@ const Navbar: React.FC<Props> = ({ role, name }) => {
   }
 
   return (
-    <nav>
-      <div>
+    <Styled.Navbar>
+      <Styled.DivOptions>
         {
           role === 'customer' && (
-            <Link to="/customer/products">
-              <button>
+            <Styled.Link to="/customer/products">
+              <Styled.Button>
                 PRODUCTS
-              </button>
-            </Link>
+              </Styled.Button>
+            </Styled.Link>
           )
         }
-        <Link to={ fieldsByRole[role].link }>
-          <button>
+        <Styled.Link to={ fieldsByRole[role].link }>
+          <Styled.Button>
             { fieldsByRole[role].text }
-          </button>
-        </Link>
-      </div>
-      <div >
-        <div>
+          </Styled.Button>
+        </Styled.Link>
+      </Styled.DivOptions>
+      <Styled.DivLogout>
+        <Styled.DivName>
           {
             role === 'administrator'
               ? 'DeliveryApp Admin'
               : name
           }
-        </div>
-        <button
+        </Styled.DivName>
+        <Styled.Button
           onClick={ () => logout() }
         >
           LOGOUT
-        </button>
-      </div>
-    </nav>
+        </Styled.Button>
+      </Styled.DivLogout>
+    </Styled.Navbar>
   );
 };
 
