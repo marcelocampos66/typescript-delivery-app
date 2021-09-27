@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom';
 class Styled {
 
   Navbar = styled.nav`
-    background-color: black;
     color: white;
     display: flex;
     justify-content: space-between;
     height: 8vh;
+
+    // background-color: ${(props) => props.theme.colors.secondary};
+    background-color: #000000;
   `;
 
   DivOptions = styled.div`

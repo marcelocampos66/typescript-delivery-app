@@ -137,3 +137,16 @@ type onChangeDropDown = (e: React.ChangeEvent<HTMLSelectElement>) => void
 type role = 'customer' | 'seller' | 'administrator'
 
 type keyName = 'name' | 'email' | 'password'
+
+interface IColors {
+  primary: string;
+  secondary: string;
+  oposite: string;
+  text: string;
+  background: string;
+}
+
+interface ITheme {
+  title: string;
+  colors: IColors;
+}

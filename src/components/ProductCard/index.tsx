@@ -37,7 +37,9 @@ const Card: React.FC<Props> = ({ product, handleClick }) => {
       />
       </Styled.DivImgContainer>
       <Styled.DivCardFooter>
-        <p>{ name }</p>
+        <Styled.DivNameContainer>
+          <p>{ name }</p>
+        </Styled.DivNameContainer>
         <Styled.DivButtonInputContainer>
           <Styled.LButton
             onClick={

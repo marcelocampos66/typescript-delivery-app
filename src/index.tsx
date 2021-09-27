@@ -1,13 +1,14 @@
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Provider from './context/Provider';
 import { BrowserRouter } from 'react-router-dom';
+import GlobalStyle from './GlobalStyle';
 
 ReactDOM.render(
   <Provider>
     <BrowserRouter>
+      <GlobalStyle />
       <App />
     </BrowserRouter>
   </Provider>,

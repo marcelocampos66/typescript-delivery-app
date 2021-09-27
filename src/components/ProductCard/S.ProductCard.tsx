@@ -32,18 +32,27 @@ class Styled {
 
   DivCardFooter = styled.div`
     align-items: center;
-    background-color: #EAF1EF;
+    background-color: ${(props) => props.theme.colors.secondary};
     display: flex;
     flex-direction: column;
     height: 30%;
     bottom: 0;
   `;
 
+  DivNameContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40%;
+    width: 100%;
+  `;
+
   DivButtonInputContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50%;
+    height: 60%;
+    width: 100%;
   `;
 
   LButton = styled.button`
@@ -54,7 +63,7 @@ class Styled {
     width: 35px;
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
-    height: 60%;
+    height: 50%;
   `;
 
   RButton = styled.button`
@@ -65,7 +74,7 @@ class Styled {
     width: 35px;
     border-bottom-right-radius: 10px;
     border-top-right-radius: 10px;
-    height: 60%;
+    height: 50%;
   `;
 
   Price = styled.p`

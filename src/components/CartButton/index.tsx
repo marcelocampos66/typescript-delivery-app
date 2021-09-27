@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import AppContext from '../../context/AppContext';
 import Helpers from '../../helpers/Helpers';
+import Styled from './S.CartButton';
 
 const CartButton: React.FC = () => {
   const [totalCart, setTotalCart] = useState('R$ 0,00');
@@ -22,14 +23,14 @@ const CartButton: React.FC = () => {
   }, [cart]);
 
   return (
-    <div>
-      <button
+    <Styled.Div>
+      <Styled.Button
         type="button"
         onClick={ () => redirectToCheckout() }
       >
         { totalCart }
-      </button>
-    </div>
+      </Styled.Button>
+    </Styled.Div>
   );
 }
 

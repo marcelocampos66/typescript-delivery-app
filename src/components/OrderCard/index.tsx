@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import Helpers from '../../helpers/Helpers';
+import Styled from './S.OrderCard';
  
 interface Props {
   sale: {
@@ -36,9 +37,11 @@ const OrderCard: React.FC<Props> = ({ sale }) => {
   );
 
   const addressDiv = () => (
-    <p>
-      {`${adress}, ${addressNumber}`}
-    </p>
+    <div>
+      <p>
+        {`${adress}, ${addressNumber}`}
+      </p>
+    </div>
   );
 
   const dataValueDiv = () => (
@@ -53,8 +56,8 @@ const OrderCard: React.FC<Props> = ({ sale }) => {
   );
 
   return (
-    <Link to={ `/${role}/orders/${id}` }>
-      <div>
+    <Styled.Link to={ `/${role}/orders/${id}` }>
+      <Styled.DivCard>
         <div>
           <div>
             <p>
@@ -62,15 +65,13 @@ const OrderCard: React.FC<Props> = ({ sale }) => {
             </p>
           </div>
           <div>
-            <div>
-              { statusDiv() }
-              { dataValueDiv() }
-            </div>
-            { role === 'seller' && addressDiv() }
+            { statusDiv() }
+            { dataValueDiv() }
           </div>
         </div>
-      </div>
-    </Link>
+        { role === 'seller' && addressDiv() }
+      </Styled.DivCard>
+    </Styled.Link>
   );
 };
 

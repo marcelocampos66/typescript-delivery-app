@@ -9,6 +9,8 @@ class Styled {
     margin-top: 20px;
     flex-wrap: wrap;
     width: 100%;
+
+    background-color: ${(props) => props.theme.colors.background};
   `;
 
 }
