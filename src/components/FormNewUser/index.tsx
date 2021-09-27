@@ -5,13 +5,11 @@ import Helpers from '../../helpers/Helpers';
 import Api from '../../services/Api';
 import { DEFAULT_STATE } from '../../context/AppContext';
 import { inputs, roles } from './inputs';
+import Styled from '../FormNewUser/S.FormNewUser';
 
-interface Props {
-  select: boolean;
-}
-
-const FormNewUser: React.FC<Props> = ({ select }) => {
+const FormNewUser: React.FC = () => {
   const [disable, setDisable] = useState(true);
+  const [select, setSelect] = useState(false);
   const {
     newUser,
     setNewUser,
@@ -19,13 +17,22 @@ const FormNewUser: React.FC<Props> = ({ select }) => {
     setErrorMessage,
   } = useContext(AppContext);
   const history = useHistory();
+  console.log(history);
 
   const disableButton = () => {
     const verify = Helpers.verifyNewUserCredentials(newUser);
     setDisable(verify);
   }
 
+  const renderSelect = () => {
+    if (history.location.pathname === '/register') {
+      return setSelect(false);
+    }
+    setSelect(true);
+  }
+
   useEffect(() => {
+    renderSelect();
     disableButton();
   }, [newUser]);
 
@@ -56,12 +63,12 @@ const FormNewUser: React.FC<Props> = ({ select }) => {
   }
 
   return (
-    <section>
+    <Styled.Section direction={ select }>
       {
         inputs.map(({ name, type, placeholder }) => (
-          <label htmlFor={name}>
+          <Styled.Label htmlFor={name}>
             {`${Helpers.uppercaseFirstLetter(name)}:`}
-            <input
+            <Styled.Input
               type={type}
               name={name}
               value={ newUser[name] }
@@ -69,13 +76,13 @@ const FormNewUser: React.FC<Props> = ({ select }) => {
               id={name}
               placeholder={placeholder}
             />
-          </label>
+          </Styled.Label>
         ))
       }
       { select && (
-        <label>
+        <Styled.Label>
           Role:
-          <select
+          <Styled.Select
             name="role"
             onChange={
               (e: React.ChangeEvent<HTMLSelectElement>) => handleDropDown(e)
@@ -89,17 +96,18 @@ const FormNewUser: React.FC<Props> = ({ select }) => {
                 </option>
               ))
             }
-          </select>
-        </label>
+          </Styled.Select>
+        </Styled.Label>
       ) }
-      <button
-        type="button"
-        disabled={ disable }
-        onClick={ () => handleClick() }
-      >
-        Register
-      </button>
-    </section>
+      <Styled.Button
+          direction={ select }
+          type="button"
+          disabled={ disable }
+          onClick={ () => handleClick() }
+        >
+          Register
+        </Styled.Button>
+    </Styled.Section>
   );
 }
 

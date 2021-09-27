@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import AppContext from '../../context/AppContext';
 import Api from '../../services/Api';
 import Helpers from '../../helpers/Helpers';
 import { DEFAULT_STATE } from '../../context/AppContext';
+import Styled from '../FormLogin/S.FormLogin';
+import logo from '../../images/kingofdelivery.png';
 
 const FormLogin: React.FC = () => {
   const [disable, setDisable] = useState(true);
@@ -37,43 +39,54 @@ const FormLogin: React.FC = () => {
   };
   
   return (
-    <section>
-      <label>
-        Login:
-        <input
-          type="text"
-          name="email"
-          onChange={ (e: React.ChangeEvent<HTMLInputElement>) => handleChange(e) }
-          placeholder="email@appdelivery.com.br"
-          value={ loginData.email }
+    <Styled.Section>
+      <Styled.Div>
+        <Styled.Img
+          src={ logo }
+          alt="logo"
         />
-      </label>
-      <label>
-        Password:
-        <input
-          type="password"
-          name="password"
-          onChange={ (e: React.ChangeEvent<HTMLInputElement>) => handleChange(e) }
-          placeholder="************"
-          value={ loginData.password }
-        />
-      </label>
-      <button
-        type="button"
-        disabled={ disable }
-        onClick={ () => handleClick() }
-      >
-        Login
-      </button>
-      <Link to="/register">
-        <button
-          type="button"
-          onClick={ () => {} }
-        >
-          Register
-        </button>
-      </Link>
-    </section>
+      </Styled.Div>
+      <Styled.Line />
+      <Styled.Div>
+        <Styled.Label>
+          Login:
+          <Styled.Input
+            type="text"
+            name="email"
+            onChange={ (e: React.ChangeEvent<HTMLInputElement>) => handleChange(e) }
+            placeholder="email@appdelivery.com.br"
+            value={ loginData.email }
+          />
+        </Styled.Label>
+        <Styled.Label>
+          Password:
+          <Styled.Input
+            type="password"
+            name="password"
+            onChange={ (e: React.ChangeEvent<HTMLInputElement>) => handleChange(e) }
+            placeholder="************"
+            value={ loginData.password }
+          />
+        </Styled.Label>
+        <Styled.DivButtons>
+          <Styled.Button
+            type="button"
+            disabled={ disable }
+            onClick={ () => handleClick() }
+          >
+            Login
+          </Styled.Button>
+          <Styled.Link to="/register">
+            <Styled.ButtonRegister
+              type="button"
+              onClick={ () => {} }
+            >
+              Register
+            </Styled.ButtonRegister>
+          </Styled.Link>
+        </Styled.DivButtons>
+      </Styled.Div>
+    </Styled.Section>
   );
 }
 

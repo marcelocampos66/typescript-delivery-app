@@ -38,7 +38,7 @@ const AdminPanel: React.FC = () => {
   return (
     <main>
       <NavBar role={ userData!.role } name={ userData!.name } />
-      <FormNewUser select={ true } />
+      <FormNewUser />
       <UsersTable users={ usersList } />
     </main>
   );

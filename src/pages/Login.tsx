@@ -1,12 +1,13 @@
 import React, { useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import AppContext from '../context/AppContext';
+import Container from '../components/ContainerCenter';
 import FormLogin from '../components/FormLogin';
-import logoDelivery from '../images/DeliveryFast.png';
+import ErrorMessage from '../components/ErrorMessage';
 import Helpers from '../helpers/Helpers';
 
 const Login: React.FC = () => {
-  const { errorMessage, setErrorMessage } = useContext(AppContext);
+  const { errorMessage } = useContext(AppContext);
   const history = useHistory();
 
   const verifyIfAlreadyLogged = () => {
@@ -22,31 +23,11 @@ const Login: React.FC = () => {
     verifyIfAlreadyLogged();
   }, []);
 
-  const errorDivMessage = () => (
-    <div>
-      <p>{ errorMessage }</p>
-      <button
-        type="button"
-        onClick={ () => setErrorMessage('') }
-      >
-        Sair
-      </button>
-    </div>
-  );
-
   return (
-    <main>
-      <img
-        src={ logoDelivery }
-        alt="delivery"
-        style={{ width: '250px', height: '200px' }}
-      />
-      <section>
-        <h1>Bem vindo(a)!</h1>
-        <FormLogin />
-        { errorMessage && errorDivMessage() }
-      </section>
-    </main>
+    <Container>
+      <FormLogin />
+      { errorMessage && <ErrorMessage /> }
+    </Container>
   );
 }
 
