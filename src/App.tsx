@@ -11,11 +11,11 @@ import { ThemeProvider } from 'styled-components';
 import { light, dark } from './GlobalStyle/Theme';
 import './App.css';
 
-const test = true;
+const theme = true;
 
 function App() {
   return (
-    <ThemeProvider theme={ test ? light : dark }>
+    <ThemeProvider theme={ theme ? light : dark }>
       <Switch>
         <Route exact path="/">
           <Redirect to="/login" />

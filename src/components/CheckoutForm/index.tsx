@@ -11,15 +11,10 @@ const initialState = {
   sellerId: ''
 };
 
-interface Props {
-  sellers: Array<ISeller>;
-  user: IUser;
-}
-
-const CheckoutForm: React.FC<Props> = ({ sellers, user }) => {
+const CheckoutForm: React.FC = () => {
   const [saleInfo, setSaleInfo] = useState(initialState);
   const [disable, setDisable] = useState(true);
-  const { cart } = useContext(AppContext);
+  const { cart, sellers, userData } = useContext(AppContext);
   const history = useHistory();
 
   const disableButton = () => {
@@ -40,8 +35,8 @@ const CheckoutForm: React.FC<Props> = ({ sellers, user }) => {
   };
 
   const handleClick = async () => {
-    const saleData = Helpers.mountSaleData(saleInfo, user.id, cart);
-    const saleId = await Api.registerOrder(saleData, cart, user.token);
+    const saleData = Helpers.mountSaleData(saleInfo, userData!.id, cart);
+    const saleId = await Api.registerOrder(saleData, cart, userData!.token);
     localStorage.setItem('cart', JSON.stringify([]));
     setSaleInfo(initialState);
     history.push(`/customer/orders/${saleId}`);

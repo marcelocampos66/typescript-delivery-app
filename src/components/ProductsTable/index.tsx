@@ -1,14 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import AppContext from '../../context/AppContext';
 import Helpers from '../../helpers/Helpers';
 
-interface Props {
-  products: Array<ICartItem> | [];
-  remove: boolean;
-}
+const Table: React.FC = () => {
+  const [showRemove, setShowRemove] = useState(false);
+  const { cart, setCart } = useContext(AppContext);
+  const history = useHistory();
 
-const Table: React.FC<Props> = ({ products, remove }) => {
-  const { setCart } = useContext(AppContext);
+  useEffect(() => {
+    if (history.location.pathname === '/customer/checkout') {
+      setShowRemove(true);
+    }
+  }, []);
 
   const handleClick = (id: number) => {
     const shoppingCart = Helpers.getCartFromStorage();
@@ -26,12 +30,12 @@ const Table: React.FC<Props> = ({ products, remove }) => {
           <th>Quantity</th>
           <th>Unit Price</th>
           <th>Sub-total</th>
-          { remove && (<th>Remove</th>) }
+          { showRemove && (<th>Remove</th>) }
         </tr>
       </thead>
       <tbody>
         {
-          products.map((item, index) => {
+          cart.map((item, index) => {
             const subTotal = item.quantity * parseFloat(item.price)
             return (
               <tr key={ item.id }>
@@ -45,7 +49,7 @@ const Table: React.FC<Props> = ({ products, remove }) => {
                   { Helpers.formatPrice(subTotal.toString()) }
                 </td>
                 {
-                  remove && (<td>
+                  showRemove && (<td>
                     <button
                       type="button"
                       onClick={ () => handleClick(item.id) }

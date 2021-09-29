@@ -1,21 +1,11 @@
 import React, { useEffect, useContext } from 'react';
-import Api from '../../services/Api';
 import Card from '../ProductCard';
 import AppContext from '../../context/AppContext';
 import Helpers from '../../helpers/Helpers';
 import Styled from './S.CardList';
 
-interface Props {
-  token: string;
-}
-
-const CardList: React.FC<Props> = ({ token }) => {
-  const { products, setProducts, cart, setCart } = useContext(AppContext);
-  
-  const getProducts = async (token: string) => {
-    const data = await Api.getAllProducts(token);
-    setProducts(data);
-  }
+const CardList: React.FC = () => {
+  const { products, cart, setCart } = useContext(AppContext);
 
   useEffect(() => {
     if (!localStorage.getItem('cart')) {
@@ -23,7 +13,6 @@ const CardList: React.FC<Props> = ({ token }) => {
     }
     const shoppingCart = Helpers.getCartFromStorage();
     setCart(shoppingCart);
-    getProducts(token);
   }, []);
 
   const addOnCart = (productId: number) => {

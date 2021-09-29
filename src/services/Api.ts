@@ -94,11 +94,12 @@ class Api {
       .catch((err) => err);
   };
 
-  public getSaleById(id: number) {
+  public getSaleById(id: number, token: string) {
     const endpoint = `${this.url}/sales/${id}`;
     return fetch(endpoint, {
       headers: {
         'Content-Type': this.content,
+        authorization: token,
       },
     })
       .then((response) => response.json())

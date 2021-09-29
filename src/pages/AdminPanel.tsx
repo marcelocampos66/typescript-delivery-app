@@ -1,46 +1,46 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import AppContext from '../context/AppContext';
+import Container from '../components/Container';
 import NavBar from '../components/NavBar';
 import FormNewUser from '../components/FormNewUser';
 import UsersTable from '../components/UsersTable';
-import Helpers from '../helpers/Helpers';
 import Api from '../services/Api';
+import Helpers from '../helpers/Helpers';
 
 const AdminPanel: React.FC = () => {
   const [loading, setLoading] = useState(true);
-  const [userData, setUserData] = useState<IUser>();
-  const { usersList, setUsersList } = useContext(AppContext);
+  const { setUsersList, setUserData } = useContext(AppContext);
   const history = useHistory();
 
-  const getUserInfo = () => {
+  const getUserData = () => {
     const data = Helpers.getDataFromStorage();
     if (!data) {
       history.push('/login');
     }
+    setUserData(data);
     return data;
   }
 
-  const getAllUsers = async () => {
-    const user = getUserInfo();
-    setUserData(user);
-    const users = await Api.getAllUsers(user!.token);
+  const getAllUsers = async (token: string) => {
+    const users = await Api.getAllUsers(token);
     setUsersList(users);
     setLoading(false);
   }
 
   useEffect(() => {
-    getAllUsers();
+    const data = getUserData();
+    getAllUsers(data!.token);
   }, []);
 
   if (loading) return <p>Loading...</p>;
 
   return (
-    <main>
-      <NavBar role={ userData!.role } name={ userData!.name } />
-      <FormNewUser select={ true } />
-      <UsersTable users={ usersList } />
-    </main>
+    <Container>
+      <NavBar />
+      <FormNewUser />
+      <UsersTable />
+    </Container>
   );
 }
 

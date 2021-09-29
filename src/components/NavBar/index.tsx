@@ -1,13 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import AppContext from '../../context/AppContext';
 import Styled from './S.NavBar';
 
-interface Props {
-  role: role;
-  name: string;
-}
-
-const Navbar: React.FC<Props> = ({ role, name }) => {
+const Navbar: React.FC = () => {
+  const { userData }= useContext(AppContext);
   const history = useHistory();
 
   const fieldsByRole = {
@@ -25,23 +22,18 @@ const Navbar: React.FC<Props> = ({ role, name }) => {
     },
   };
 
-
-  useEffect(() => {
-    if (!localStorage.getItem('user')) {
-      history.push('/login');
-    }
-  }, [])
-
   const logout = () => {
     localStorage.removeItem('user');
     history.push('/login');
   }
 
+  if (!userData) return (<p>Loading...</p>);
+
   return (
     <Styled.Navbar>
       <Styled.DivOptions>
         {
-          role === 'customer' && (
+          userData!.role === 'customer' && (
             <Styled.Link to="/customer/products">
               <Styled.Button>
                 PRODUCTS
@@ -49,18 +41,18 @@ const Navbar: React.FC<Props> = ({ role, name }) => {
             </Styled.Link>
           )
         }
-        <Styled.Link to={ fieldsByRole[role].link }>
+        <Styled.Link to={ fieldsByRole[userData!.role].link }>
           <Styled.Button>
-            { fieldsByRole[role].text }
+            { fieldsByRole[userData!.role].text }
           </Styled.Button>
         </Styled.Link>
       </Styled.DivOptions>
       <Styled.DivLogout>
         <Styled.DivName>
           {
-            role === 'administrator'
+            userData!.role === 'administrator'
               ? 'DeliveryApp Admin'
-              : name
+              : userData!.name
           }
         </Styled.DivName>
         <Styled.Button

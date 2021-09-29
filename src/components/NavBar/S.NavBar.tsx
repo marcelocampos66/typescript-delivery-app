@@ -7,7 +7,7 @@ class Styled {
     color: white;
     display: flex;
     justify-content: space-between;
-    height: 8vh;
+    height: 10%;
 
     // background-color: ${(props) => props.theme.colors.secondary};
     background-color: #000000;
@@ -36,7 +36,6 @@ class Styled {
   `;
 
   Link = styled(Link)`
-    // background-color: yellow;
     height: 100%;
   `;
 

@@ -13,6 +13,14 @@ interface IAppContext {
   setUsersList: React.Dispatch<React.SetStateAction<Array<IUserId>>>;
   loginData: IUserCredentials;
   setLoginData: React.Dispatch<React.SetStateAction<IUserCredentials>>;
+  userData: IUser | undefined;
+  setUserData: React.Dispatch<React.SetStateAction<IUser | undefined>>;
+  sellers: Array<ISeller> | [];
+  setSellers: React.Dispatch<React.SetStateAction<Array<ISeller>>>;
+  sales: Array<ISale> | [],
+  setSales: React.Dispatch<React.SetStateAction<Array<ISale>>>;
+  sale: ISaleById | undefined;
+  setSale: React.Dispatch<React.SetStateAction<ISaleById | undefined>>;
 }
 
 interface IUser {

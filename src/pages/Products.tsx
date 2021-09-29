@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import Container from '../components/Container';
 import Navbar from '../components/NavBar';
 import CardList from '../components/CardList';
 import CartButton from '../components/CartButton';
+import AppContext from '../context/AppContext';
+import Api from '../services/Api';
 import Helpers from '../helpers/Helpers';
 
 const Products: React.FC = () => {
-  const [userData, setUserData] = useState<IUser | null>();
   const [loading, setLoading] = useState(true);
+  const { setProducts, setUserData } = useContext(AppContext);
   const history = useHistory();
 
   const getUserData = () => {
@@ -16,24 +19,30 @@ const Products: React.FC = () => {
       history.push('/login');
     }
     setUserData(data);
+    return data;
+  }
+
+  const getProducts = async (token: string) => {
+    const data = await Api.getAllProducts(token);
+    if (data) {
+      setProducts(data);
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
-    getUserData();
-    setLoading(false);
+    const data = getUserData();
+    getProducts(data!.token);
   }, []);
 
   if (loading) return <p>Loading...</p>;
 
   return (
-    <main>
-      <Navbar
-        role={ userData!.role }
-        name={ userData!.name }
-      />
+    <Container>
+      <Navbar />
       <CartButton />
-      <CardList token={ userData!.token } />
-    </main>
+      <CardList />
+    </Container>
   );
 };
 
