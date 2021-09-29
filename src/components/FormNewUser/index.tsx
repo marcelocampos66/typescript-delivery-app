@@ -65,6 +65,7 @@ const FormNewUser: React.FC = () => {
 
   return (
     <Styled.Section direction={ select }>
+      { !select && (<Styled.H1>Become a member</Styled.H1>) }
       {
         inputs.map(({ name, type, placeholder }) => (
           <Styled.Label htmlFor={name}>

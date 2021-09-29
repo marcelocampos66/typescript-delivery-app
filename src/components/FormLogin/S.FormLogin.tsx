@@ -25,6 +25,7 @@ class Styled {
     flex-direction: column;
     justify-content: center;
     width: 80%;
+    color: ${(props) => props.theme.colors.oposite};
   `;
 
   Input = styled.input`
@@ -55,7 +56,7 @@ class Styled {
   Button = styled.button`
     border: 1px solid black;
     border-radius: 5px;
-    color: white;
+    color: ${(props) => props.theme.colors.primary};
     height: 40%;
     width: 50%;
     background-color: ${(props) => props.theme.colors.oposite};
@@ -76,7 +77,7 @@ class Styled {
   ButtonRegister = styled.button`
     border: 1px solid black;
     border-radius: 5px;
-    color: white;
+    color: ${(props) => props.theme.colors.primary};
     height: 100%;
     width: 100%;
     background-color: ${(props) => props.theme.colors.oposite};

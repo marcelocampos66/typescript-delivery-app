@@ -4,6 +4,7 @@ import AppContext from '../../context/AppContext';
 import DropDown from '../DropDown';
 import Api from '../../services/Api';
 import Helpers from '../../helpers/Helpers';
+import Styled from './S.CheckoutForm';
 
 const initialState = {
   address: '',
@@ -43,7 +44,7 @@ const CheckoutForm: React.FC = () => {
   };
   
   return (
-    <section>
+    <Styled.Section>
       <DropDown
         name="sellerId"
         options={ sellers as Array<ISeller> }
@@ -53,34 +54,34 @@ const CheckoutForm: React.FC = () => {
         labelText="Select Seller"
         value={ saleInfo.sellerId }
       />
-      <label>
+      <Styled.Label>
         Adress
-        <input
+        <Styled.Input
           type="text"
           name="address"
           onChange={ (e: React.ChangeEvent<HTMLInputElement>) => handleChange(e) }
           value={ saleInfo.address }
           placeholder="Street of apples, Appleland"
         />
-      </label>
-      <label>
+      </Styled.Label>
+      <Styled.Label>
       Adress Number
-        <input
+        <Styled.Input
           type="text"
           name="addressNumber"
           onChange={ (e: React.ChangeEvent<HTMLInputElement>) => handleChange(e) }
           value={ saleInfo.addressNumber }
           placeholder="123"
         />
-      </label>
-      <button
+      </Styled.Label>
+      <Styled.Button
         type="button"
         onClick={ () => handleClick() }
         disabled={ disable }
       >
         Finish Order
-      </button>
-    </section>
+      </Styled.Button>
+    </Styled.Section>
   );
 }
 

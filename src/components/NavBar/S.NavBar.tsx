@@ -7,9 +7,9 @@ class Styled {
     color: white;
     display: flex;
     justify-content: space-between;
-    height: 10%;
+    width: 100%;
+    height: 8vh;
 
-    // background-color: ${(props) => props.theme.colors.secondary};
     background-color: #000000;
   `;
 
@@ -23,7 +23,7 @@ class Styled {
     display: flex;
     height: 100%;
     width: 25%;
-    flex-basis: auto;
+    // flex-basis: auto;
     justify-content: space-between;
   `;
 

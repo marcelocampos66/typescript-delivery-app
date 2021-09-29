@@ -3,6 +3,7 @@ import { io } from "socket.io-client";
 import AppContext from '../../context/AppContext';
 import Helpers from '../../helpers/Helpers';
 import Api from '../../services/Api';
+import Styled from './S.OrderManager';
 
 const socket = io('http://localhost:3002/');
 
@@ -18,51 +19,57 @@ const OrderManager: React.FC = () => {
   };
 
   const renderSeller = () => (
-    <p>{ `Seller: ${ sale!.seller.name }` }</p>
+    <Styled.DivBox>
+      <p>{ `Seller: ${ sale!.seller.name }` }</p>
+    </Styled.DivBox>
   );
 
   const renderCustomerButtons = () => (
-    <div>
-      <button
+    <Styled.DivBox>
+      <Styled.Button
         type="button"
         disabled={ sale!.status !== 'Out for delivery' }
         onClick={ () => handleClick('Delivered') }
       >
         Delivered
-      </button>
-    </div>
+      </Styled.Button>
+    </Styled.DivBox>
   )
 
   const renderSellerButtons = () => (
-    <div>
-      <button
+    <Styled.DivBox>
+      <Styled.Button
         type="button"
         disabled={ sale!.status !== 'Pending' }
         onClick={ () => handleClick('Preparing') }
       >
         Preparing Order
-      </button>
-      <button
+      </Styled.Button>
+      <Styled.Button
         type="button"
         disabled={ sale!.status !== 'Preparing' }
         onClick={ () => handleClick('Out for delivery') }
       >
         Out for delivery
-      </button>
-    </div>
+      </Styled.Button>
+    </Styled.DivBox>
   )
 
   return (
-    <section>
-      <p>{ `PEDIDO: ${Helpers.formatOrderNumber(sale!.id)}` }</p>
+    <Styled.Section>
+      <Styled.DivBox>
+        <p>{ `PEDIDO: ${Helpers.formatOrderNumber(sale!.id)}` }</p>
+      </Styled.DivBox>
       { userData!.role === 'customer' && renderSeller() }
-      <p>{ rawDate.split(' ')[0] }</p>
-      <div>
-        <p>{ sale!.status }</p>
-      </div>
+      <Styled.DivBox>
+        <p>{ rawDate.split(' ')[0] }</p>
+      </Styled.DivBox>
+      <Styled.DivBox>
+        <p>{ `Status: ${sale!.status}` }</p>
+      </Styled.DivBox>
       { userData!.role === 'customer' && renderCustomerButtons() }
       { userData!.role === 'seller' && renderSellerButtons() }
-    </section>
+    </Styled.Section>
   );
 }
 

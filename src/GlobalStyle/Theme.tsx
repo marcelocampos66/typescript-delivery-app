@@ -2,7 +2,8 @@ export const light: ITheme = {
   title: 'light',
   colors: {
     primary: '#ffffff',
-    secondary: '#EAF1EF',
+    secondary: '#ddd',
+    third: '#f2f2f2',
     oposite: '#000000',
     text: '#000000',
     background: '#ffffff',
@@ -14,8 +15,11 @@ export const dark: ITheme = {
   colors: {
     primary: '#282F44',
     secondary: '#7E7F9A',
+    third: '#7E7F9A',
     oposite: '#ffffff',
     text: '#ffffff',
     background: '#191D32',
   },
 }
+
+// secondary: '#EAF1EF',

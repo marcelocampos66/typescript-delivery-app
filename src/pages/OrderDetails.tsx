@@ -43,8 +43,6 @@ const OrderDetails: React.FC<Props> = ({ match: { params: { id } } }) => {
     getSaleInfo(id, data!.token);
   }, []);
 
-  
-
   if (loading) return <p>Loading...</p>;
 
   socket.on(`update${userData!.role}`, () => {

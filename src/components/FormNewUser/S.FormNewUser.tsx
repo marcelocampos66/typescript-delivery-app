@@ -12,8 +12,8 @@ class Styled {
     flex-direction: ${(props) => props.direction ? 'row' : 'column'};
     justify-content: center;
     align-items: center;
-    width: ${(props) => props.direction ? '90%' : '50%'};
-    height: 80%;
+    width: ${(props) => props.direction ? '100%' : '50%'};
+    height: ${(props) => props.direction ? '10%' : '80%'};
     border: ${(props) => props.direction ? 'none' : '1px solid black'};
     border-radius: 15px;
     box-shadow: ${(props) => props.direction ? 'none' : '0px 0px 10px rgba(0,0,0,0.25)'};
@@ -37,6 +37,7 @@ class Styled {
     width: 80%;
     height: 8vh;
     margin: 1%;
+    color: ${(props) => props.theme.colors.oposite}
   `;
 
   Input = styled.input`
@@ -56,6 +57,7 @@ class Styled {
     margin-bottom: 2%;
     height: 5vh;
     padding: 1%;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.25);
 
     &:focus {
       background-color: lightblue;
@@ -78,12 +80,12 @@ class Styled {
   Button = styled.button<Props>`
     border: 1px solid black;
     border-radius: 5px;
-    color: white;
+    color: ${(props) => props.theme.colors.primary};
     height: 5vh;
     width: ${(props) => props.direction ? '50%' : '20%'};
     background-color: ${(props) => props.disabled ? 'gray' : props.theme.colors.oposite};
     margin-right: ${(props) => props.direction ? '1%' : '0'};
-    margin-top: ${(props) => props.direction ? '0' : '8%'};
+    margin-top: ${(props) => props.direction ? '0' : '4%'};
 
     &:hover {
       background-color: ${(props) => props.disabled ? 'gray' : props.theme.colors.primary};
@@ -100,6 +102,11 @@ class Styled {
   Line = styled.div`
     height: 80%;
     border-right: 1px solid black;
+  `;
+
+  H1 = styled.h1`
+    margin-bottom: 4%;
+    color: ${(props) => props.theme.colors.oposite}
   `;
 
 }

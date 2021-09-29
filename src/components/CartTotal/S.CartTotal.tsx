@@ -2,16 +2,16 @@ import styled from 'styled-components';
 
 class Styled {
 
-  Section = styled.section`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  Div = styled.div`
     width: 100%;
-    flex-wrap: wrap;
-    // height: 90vh;
-    // margin-top: 10vh;
+    border: 1px solid #ddd;
+    padding: 8px;
 
     background-color: ${(props) => props.theme.colors.background};
+  `;
+
+  P = styled.p`
+    font-size: 12px;
   `;
 
 }

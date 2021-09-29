@@ -149,6 +149,7 @@ type keyName = 'name' | 'email' | 'password'
 interface IColors {
   primary: string;
   secondary: string;
+  third: string;
   oposite: string;
   text: string;
   background: string;

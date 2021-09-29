@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import AppContext from '../../context/AppContext';
 import Helpers from '../../helpers/Helpers';
+import Styled from './S.ProductsTable';
 
 const Table: React.FC = () => {
   const [showRemove, setShowRemove] = useState(false);
@@ -22,48 +23,48 @@ const Table: React.FC = () => {
   }
 
   return (
-    <table>
+    <Styled.Table>
       <thead>
-        <tr>
-          <th>Item</th>
-          <th>Description</th>
-          <th>Quantity</th>
-          <th>Unit Price</th>
-          <th>Sub-total</th>
-          { showRemove && (<th>Remove</th>) }
-        </tr>
+        <Styled.Tr>
+          <Styled.Th>Item</Styled.Th>
+          <Styled.Th>Description</Styled.Th>
+          <Styled.Th>Quantity</Styled.Th>
+          <Styled.Th>Unit Price</Styled.Th>
+          <Styled.Th>Sub-total</Styled.Th>
+          { showRemove && (<Styled.Th>Remove</Styled.Th>) }
+        </Styled.Tr>
       </thead>
-      <tbody>
+      <Styled.Tbody>
         {
           cart.map((item, index) => {
             const subTotal = item.quantity * parseFloat(item.price)
             return (
-              <tr key={ item.id }>
-                <td>{index + 1}</td>
-                <td>{item.name}</td>
-                <td>{item.quantity}</td>
-                <td>
+              <Styled.Tr key={ item.id }>
+                <Styled.Td>{index + 1}</Styled.Td>
+                <Styled.Td>{item.name}</Styled.Td>
+                <Styled.Td>{item.quantity}</Styled.Td>
+                <Styled.Td>
                   { Helpers.formatPrice(item.price) }
-                </td>
-                <td>
+                </Styled.Td>
+                <Styled.Td>
                   { Helpers.formatPrice(subTotal.toString()) }
-                </td>
+                </Styled.Td>
                 {
-                  showRemove && (<td>
-                    <button
+                  showRemove && (<Styled.Td>
+                    <Styled.Button
                       type="button"
                       onClick={ () => handleClick(item.id) }
                     >
                       Remove
-                    </button>
-                  </td>)
+                    </Styled.Button>
+                  </Styled.Td>)
                 }
-              </tr>
+              </Styled.Tr>
             )
           })
         }
-      </tbody>
-    </table>
+      </Styled.Tbody>
+    </Styled.Table>
   );
 }
 
