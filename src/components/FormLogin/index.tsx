@@ -9,7 +9,7 @@ import logo from '../../images/kingofdelivery.png';
 
 const FormLogin: React.FC = () => {
   const [disable, setDisable] = useState(true);
-  const { loginData, setLoginData, setErrorMessage } = useContext(AppContext);
+  const { loginData, setLoginData, setErrorMessage, setLoading } = useContext(AppContext);
   const history = useHistory();
 
   const disableButton = () => {
@@ -34,6 +34,7 @@ const FormLogin: React.FC = () => {
       localStorage.setItem('user', JSON.stringify(result));
       const path = Helpers.getPathToRedirect(result.role);
       setLoginData(DEFAULT_STATE.loginData);
+      setLoading(true);
       history.push(path);
     }
   };

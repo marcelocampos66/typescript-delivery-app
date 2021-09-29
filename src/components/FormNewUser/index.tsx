@@ -15,9 +15,9 @@ const FormNewUser: React.FC = () => {
     setNewUser,
     setUsersList,
     setErrorMessage,
+    setLoading,
   } = useContext(AppContext);
   const history = useHistory();
-  console.log(history);
 
   const disableButton = () => {
     const verify = Helpers.verifyNewUserCredentials(newUser);
@@ -54,6 +54,7 @@ const FormNewUser: React.FC = () => {
     if (history.location.pathname === '/register') {
       localStorage.setItem('user', JSON.stringify(result));
       setNewUser(DEFAULT_STATE.newUser);
+      setLoading(false);
       history.push('/customer/products');
       return;
     }

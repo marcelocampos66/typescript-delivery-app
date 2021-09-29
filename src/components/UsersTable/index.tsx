@@ -3,12 +3,8 @@ import AppContext from '../../context/AppContext';
 import Api from '../../services/Api';
 import Helpers from '../../helpers/Helpers';
 
-interface Props {
-  users: Array<IUserId>;
-}
-
-const UsersTable: React.FC<Props> = ({ users }) => {
-  const { setUsersList } = useContext(AppContext);
+const UsersTable: React.FC = () => {
+  const { usersList, setUsersList } = useContext(AppContext);
 
   const handleClick = async (id: number) => {
     const adminData = Helpers.getDataFromStorage() as IUser;
@@ -36,7 +32,7 @@ const UsersTable: React.FC<Props> = ({ users }) => {
       </thead>
       <tbody>
         {
-          users.map((user, index) => (
+          usersList.map((user, index) => (
             <tr key={ index }>
               <td>
                 {index + 1}

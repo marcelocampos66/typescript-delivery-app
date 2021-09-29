@@ -1,26 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { io } from "socket.io-client";
+import Container from '../components/Container';
 import NavBar from '../components/NavBar';
-import OrderCard from '../components/OrderCard';
+import OrderList from '../components/OrderList';
 import Api from '../services/Api';
 import Helpers from '../helpers/Helpers';
+import AppContext from '../context/AppContext';
 
 const socket = io('http://localhost:3002/');
 
 const Orders: React.FC= () => {
   const [loading, setLoading] = useState(true);
-  const [userData, setUserData] = useState<IUser>();
-  const [sales, setSales] = useState([]);
+  const { userData, setUserData, setSales } = useContext(AppContext);
   const history = useHistory();
 
-  const setInitialInfos = async () => {
+  const getUserData = () => {
     const data = Helpers.getDataFromStorage();
     if (!data) {
       history.push('/login');
     }
     setUserData(data);
-    const salesData = await Api.getAllSales(data!.token);
+    return data;
+  }
+
+  const getSales = async (token: string) => {
+    const salesData = await Api.getAllSales(token);
     if (salesData.error
       && salesData.error.message === 'Expired or invalid token') {
       setLoading(false);
@@ -31,29 +36,21 @@ const Orders: React.FC= () => {
   };
 
   useEffect(() => {
-    setInitialInfos();
+    const data = getUserData();
+    getSales(data!.token);
   }, []);
 
   if (loading) return <h1>Loading...</h1>;
 
   socket.on(`update${userData!.role}`, () => {
-    setInitialInfos();
+    getSales(userData!.token);
   });
 
   return (
-    <main>
-      <NavBar role={ userData!.role } name={ userData!.name } />
-      <section>
-        {
-          sales.map((sale: ISale) => (
-            <OrderCard
-              key={ sale.id }
-              sale={ Helpers.mountProp(userData!.role, sale) }
-            />
-          ))
-        }
-      </section>
-    </main>
+    <Container>
+      <NavBar />
+      <OrderList />
+    </Container>
   );
 }
 

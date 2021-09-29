@@ -10,6 +10,10 @@ const Provider: React.FC = ({ children }) => {
   const [newUser, setNewUser] = useState<INewUser>(DEFAULT_STATE.newUser);
   const [usersList, setUsersList] = useState<Array<IUserId> | []>(DEFAULT_STATE.usersList);
   const [loginData, setLoginData] = useState<IUserCredentials>(DEFAULT_STATE.loginData);
+  const [userData, setUserData] = useState<IUser | undefined>(DEFAULT_STATE.userData);
+  const [sellers, setSellers] = useState<Array<ISeller> | []>(DEFAULT_STATE.sellers);
+  const [sales, setSales] = useState<Array<ISale> | []>(DEFAULT_STATE.sales);
+  const [sale, setSale] = useState<ISaleById | undefined>(DEFAULT_STATE.sale);
 
   const contextValue = {
     loading,
@@ -26,6 +30,14 @@ const Provider: React.FC = ({ children }) => {
     setUsersList,
     loginData,
     setLoginData,
+    userData,
+    setUserData,
+    sellers,
+    setSellers,
+    sales,
+    setSales,
+    sale,
+    setSale,
   };
 
   return (
