@@ -1,5 +1,6 @@
 import React from 'react';
 import Helpers from '../../helpers/Helpers';
+import Styled from './S.ProductCard';
 
 interface Props {
   product: IProduct;
@@ -24,41 +25,46 @@ const Card: React.FC<Props> = ({ product, handleClick }) => {
   }
 
   return (
-    <div>
-      <p>
+    <Styled.Div>
+      <Styled.DivImgContainer>
+      <Styled.Price>
         { Helpers.formatPrice(price) }
-      </p>
-      <img
+      </Styled.Price>
+      <Styled.Img
         src={ image }
         alt={ name }
-        style={{ width: '100px', height: '100px' }}
       />
-      <p>{ name }</p>
-      <div>
-        <button
-          onClick={
-            (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => handleClick(e)
-          }
-          name="decrement"
-          value={ id }
-        >
-          -
-        </button>
-        <input
-          type="text"
-          value={ getQuantity() === undefined ? 0 : getQuantity() }
-        />
-        <button
-          onClick={
-            (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => handleClick(e)
-          }
-          name="increment"
-          value={ id }
-        >
-          +
-        </button>
-      </div>
-    </div>
+      </Styled.DivImgContainer>
+      <Styled.DivCardFooter>
+        <Styled.DivNameContainer>
+          <p>{ name }</p>
+        </Styled.DivNameContainer>
+        <Styled.DivButtonInputContainer>
+          <Styled.LButton
+            onClick={
+              (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => handleClick(e)
+            }
+            name="decrement"
+            value={ id }
+          >
+            -
+          </Styled.LButton>
+          <Styled.Input
+            type="text"
+            value={ getQuantity() === undefined ? 0 : getQuantity() }
+          />
+          <Styled.RButton
+            onClick={
+              (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => handleClick(e)
+            }
+            name="increment"
+            value={ id }
+          >
+            +
+          </Styled.RButton>
+        </Styled.DivButtonInputContainer>
+      </Styled.DivCardFooter>
+    </Styled.Div>
   );
 }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import Styled from './S.DropDown';
 
 interface Props {
   name: string;
@@ -16,9 +17,9 @@ const DropDown: React.FC<Props> = ({
   value,
 }) => {
   return (
-    <label htmlFor={ name }>
+    <Styled.Label htmlFor={ name }>
       { labelText }
-      <select
+      <Styled.Select
         name={ name }
         id={ name }
         onChange={ onChange }
@@ -32,8 +33,8 @@ const DropDown: React.FC<Props> = ({
             { option.name }
           </option>
         ))}
-      </select>
-    </label>
+      </Styled.Select>
+    </Styled.Label>
   );
 }
 

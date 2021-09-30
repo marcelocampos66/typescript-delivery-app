@@ -7,24 +7,30 @@ import Checkout from './pages/Checkout';
 import Orders from './pages/Orders';
 import OrderDetails from './pages/OrderDetails';
 import AdminPanel from './pages/AdminPanel';
+import { ThemeProvider } from 'styled-components';
+import { light, dark } from './GlobalStyle/Theme';
 import './App.css';
+
+const theme = true;
 
 function App() {
   return (
-    <Switch>
-      <Route exact path="/">
-        <Redirect to="/login" />
-      </Route>
-      <Route path="/login" component={ Login } />
-      <Route path="/register" component={ Register } />
-      <Route path="/customer/products" component={ Products } />
-      <Route path="/customer/checkout" component={ Checkout } />
-      <Route path="/customer/orders/:id" component={ OrderDetails } />
-      <Route path="/seller/orders/:id" component={ OrderDetails } />
-      <Route path="/customer/orders" component={ Orders } />
-      <Route path="/seller/orders" component={ Orders } />
-      <Route path="/admin/manage" component={ AdminPanel } />
-    </Switch>
+    <ThemeProvider theme={ theme ? light : dark }>
+      <Switch>
+        <Route exact path="/">
+          <Redirect to="/login" />
+        </Route>
+        <Route path="/login" component={ Login } />
+        <Route path="/register" component={ Register } />
+        <Route path="/customer/products" component={ Products } />
+        <Route path="/customer/checkout" component={ Checkout } />
+        <Route path="/customer/orders/:id" component={ OrderDetails } />
+        <Route path="/seller/orders/:id" component={ OrderDetails } />
+        <Route path="/customer/orders" component={ Orders } />
+        <Route path="/seller/orders" component={ Orders } />
+        <Route path="/admin/manage" component={ AdminPanel } />
+      </Switch>
+    </ThemeProvider>
   );
 }
 

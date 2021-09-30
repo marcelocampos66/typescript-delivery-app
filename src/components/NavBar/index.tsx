@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import AppContext from '../../context/AppContext';
+import Styled from './S.NavBar';
 
-interface Props {
-  role: role;
-  name: string;
-}
-
-const Navbar: React.FC<Props> = ({ role, name }) => {
+const Navbar: React.FC = () => {
+  const { userData }= useContext(AppContext);
   const history = useHistory();
 
   const fieldsByRole = {
@@ -24,51 +22,46 @@ const Navbar: React.FC<Props> = ({ role, name }) => {
     },
   };
 
-
-  useEffect(() => {
-    if (!localStorage.getItem('user')) {
-      history.push('/login');
-    }
-  }, [])
-
   const logout = () => {
     localStorage.removeItem('user');
     history.push('/login');
   }
 
+  if (!userData) return (<p>Loading...</p>);
+
   return (
-    <nav>
-      <div>
+    <Styled.Navbar>
+      <Styled.DivOptions>
         {
-          role === 'customer' && (
-            <Link to="/customer/products">
-              <button>
+          userData!.role === 'customer' && (
+            <Styled.Link to="/customer/products">
+              <Styled.Button>
                 PRODUCTS
-              </button>
-            </Link>
+              </Styled.Button>
+            </Styled.Link>
           )
         }
-        <Link to={ fieldsByRole[role].link }>
-          <button>
-            { fieldsByRole[role].text }
-          </button>
-        </Link>
-      </div>
-      <div >
-        <div>
+        <Styled.Link to={ fieldsByRole[userData!.role].link }>
+          <Styled.Button>
+            { fieldsByRole[userData!.role].text }
+          </Styled.Button>
+        </Styled.Link>
+      </Styled.DivOptions>
+      <Styled.DivLogout>
+        <Styled.DivName>
           {
-            role === 'administrator'
+            userData!.role === 'administrator'
               ? 'DeliveryApp Admin'
-              : name
+              : userData!.name
           }
-        </div>
-        <button
+        </Styled.DivName>
+        <Styled.Button
           onClick={ () => logout() }
         >
           LOGOUT
-        </button>
-      </div>
-    </nav>
+        </Styled.Button>
+      </Styled.DivLogout>
+    </Styled.Navbar>
   );
 };
 

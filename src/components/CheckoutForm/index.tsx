@@ -4,6 +4,7 @@ import AppContext from '../../context/AppContext';
 import DropDown from '../DropDown';
 import Api from '../../services/Api';
 import Helpers from '../../helpers/Helpers';
+import Styled from './S.CheckoutForm';
 
 const initialState = {
   address: '',
@@ -11,15 +12,10 @@ const initialState = {
   sellerId: ''
 };
 
-interface Props {
-  sellers: Array<ISeller>;
-  user: IUser;
-}
-
-const CheckoutForm: React.FC<Props> = ({ sellers, user }) => {
+const CheckoutForm: React.FC = () => {
   const [saleInfo, setSaleInfo] = useState(initialState);
   const [disable, setDisable] = useState(true);
-  const { cart } = useContext(AppContext);
+  const { cart, sellers, userData } = useContext(AppContext);
   const history = useHistory();
 
   const disableButton = () => {
@@ -40,15 +36,15 @@ const CheckoutForm: React.FC<Props> = ({ sellers, user }) => {
   };
 
   const handleClick = async () => {
-    const saleData = Helpers.mountSaleData(saleInfo, user.id, cart);
-    const saleId = await Api.registerOrder(saleData, cart, user.token);
+    const saleData = Helpers.mountSaleData(saleInfo, userData!.id, cart);
+    const saleId = await Api.registerOrder(saleData, cart, userData!.token);
     localStorage.setItem('cart', JSON.stringify([]));
     setSaleInfo(initialState);
     history.push(`/customer/orders/${saleId}`);
   };
   
   return (
-    <section>
+    <Styled.Section>
       <DropDown
         name="sellerId"
         options={ sellers as Array<ISeller> }
@@ -58,34 +54,34 @@ const CheckoutForm: React.FC<Props> = ({ sellers, user }) => {
         labelText="Select Seller"
         value={ saleInfo.sellerId }
       />
-      <label>
+      <Styled.Label>
         Adress
-        <input
+        <Styled.Input
           type="text"
           name="address"
           onChange={ (e: React.ChangeEvent<HTMLInputElement>) => handleChange(e) }
           value={ saleInfo.address }
           placeholder="Street of apples, Appleland"
         />
-      </label>
-      <label>
+      </Styled.Label>
+      <Styled.Label>
       Adress Number
-        <input
+        <Styled.Input
           type="text"
           name="addressNumber"
           onChange={ (e: React.ChangeEvent<HTMLInputElement>) => handleChange(e) }
           value={ saleInfo.addressNumber }
           placeholder="123"
         />
-      </label>
-      <button
+      </Styled.Label>
+      <Styled.Button
         type="button"
         onClick={ () => handleClick() }
         disabled={ disable }
       >
         Finish Order
-      </button>
-    </section>
+      </Styled.Button>
+    </Styled.Section>
   );
 }
 

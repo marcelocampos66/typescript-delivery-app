@@ -13,6 +13,14 @@ interface IAppContext {
   setUsersList: React.Dispatch<React.SetStateAction<Array<IUserId>>>;
   loginData: IUserCredentials;
   setLoginData: React.Dispatch<React.SetStateAction<IUserCredentials>>;
+  userData: IUser | undefined;
+  setUserData: React.Dispatch<React.SetStateAction<IUser | undefined>>;
+  sellers: Array<ISeller> | [];
+  setSellers: React.Dispatch<React.SetStateAction<Array<ISeller>>>;
+  sales: Array<ISale> | [],
+  setSales: React.Dispatch<React.SetStateAction<Array<ISale>>>;
+  sale: ISaleById | undefined;
+  setSale: React.Dispatch<React.SetStateAction<ISaleById | undefined>>;
 }
 
 interface IUser {
@@ -137,3 +145,17 @@ type onChangeDropDown = (e: React.ChangeEvent<HTMLSelectElement>) => void
 type role = 'customer' | 'seller' | 'administrator'
 
 type keyName = 'name' | 'email' | 'password'
+
+interface IColors {
+  primary: string;
+  secondary: string;
+  third: string;
+  oposite: string;
+  text: string;
+  background: string;
+}
+
+interface ITheme {
+  title: string;
+  colors: IColors;
+}

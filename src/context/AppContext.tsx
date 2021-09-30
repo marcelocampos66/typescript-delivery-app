@@ -27,6 +27,14 @@ export const DEFAULT_STATE = {
   setUsersList: () => {},
   loginData: loginInitialState,
   setLoginData: () => {},
+  userData: undefined,
+  setUserData: () => {},
+  sellers: [],
+  setSellers: () => {},
+  sales: [],
+  setSales: () => {},
+  sale: undefined,
+  setSale: () => {},
 };
 
 const AppContext = createContext<IAppContext>(DEFAULT_STATE);

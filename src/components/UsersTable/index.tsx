@@ -2,13 +2,10 @@ import React, { useContext } from 'react';
 import AppContext from '../../context/AppContext';
 import Api from '../../services/Api';
 import Helpers from '../../helpers/Helpers';
+import Styled from './S.UsersTable';
 
-interface Props {
-  users: Array<IUserId>;
-}
-
-const UsersTable: React.FC<Props> = ({ users }) => {
-  const { setUsersList } = useContext(AppContext);
+const UsersTable: React.FC = () => {
+  const { usersList, setUsersList } = useContext(AppContext);
 
   const handleClick = async (id: number) => {
     const adminData = Helpers.getDataFromStorage() as IUser;
@@ -24,47 +21,47 @@ const UsersTable: React.FC<Props> = ({ users }) => {
   };
 
   return (
-    <table className="table-container">
-      <thead className="table-head">
-        <tr>
-          <th>Item</th>
-          <th>Nome</th>
-          <th>E-mail</th>
-          <th>Tipo</th>
-          <th>Excluir</th>
-        </tr>
+    <Styled.Table>
+      <thead>
+        <Styled.Tr>
+          <Styled.Th>Item</Styled.Th>
+          <Styled.Th>Nome</Styled.Th>
+          <Styled.Th>E-mail</Styled.Th>
+          <Styled.Th>Tipo</Styled.Th>
+          <Styled.Th>Excluir</Styled.Th>
+        </Styled.Tr>
       </thead>
-      <tbody>
+      <Styled.Tbody>
         {
-          users.map((user, index) => (
-            <tr key={ index }>
-              <td>
+          usersList.map((user, index) => (
+            <Styled.Tr key={ index }>
+              <Styled.Td>
                 {index + 1}
-              </td>
-              <td>
+              </Styled.Td>
+              <Styled.Td>
                 {user.name}
-              </td>
-              <td>
+              </Styled.Td>
+              <Styled.Td>
                 {user.email}
-              </td>
-              <td>
+              </Styled.Td>
+              <Styled.Td>
                 {userTypes[user.role]}
-              </td>
-              <td>
-                <button
+              </Styled.Td>
+              <Styled.Td>
+                <Styled.Button
                   type="button"
                   value={ user.id }
                   disabled={ user.role === 'administrator' }
                   onClick={ () => handleClick(user.id) }
                 >
                   Delete
-                </button>
-              </td>
-            </tr>
+                </Styled.Button>
+              </Styled.Td>
+            </Styled.Tr>
           ))
         }
-      </tbody>
-    </table>
+      </Styled.Tbody>
+    </Styled.Table>
   );
 }
 
