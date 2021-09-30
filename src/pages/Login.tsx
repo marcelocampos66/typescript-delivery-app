@@ -7,13 +7,14 @@ import ErrorMessage from '../components/ErrorMessage';
 import Helpers from '../helpers/Helpers';
 
 const Login: React.FC = () => {
-  const { errorMessage } = useContext(AppContext);
+  const { errorMessage, setTheme } = useContext(AppContext);
   const history = useHistory();
 
   const verifyIfAlreadyLogged = () => {
     const content = localStorage.getItem('user');
     if (content) {
       const userData = JSON.parse(content) as IUser;
+      setTheme(userData.theme);
       const path = Helpers.getPathToRedirect(userData.role);
       history.push(path);
     }

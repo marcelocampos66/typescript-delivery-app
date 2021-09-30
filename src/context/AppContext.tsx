@@ -35,6 +35,8 @@ export const DEFAULT_STATE = {
   setSales: () => {},
   sale: undefined,
   setSale: () => {},
+  theme: true,
+  setTheme: () => {},
 };
 
 const AppContext = createContext<IAppContext>(DEFAULT_STATE);

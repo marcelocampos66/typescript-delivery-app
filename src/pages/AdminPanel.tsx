@@ -10,7 +10,7 @@ import Helpers from '../helpers/Helpers';
 
 const AdminPanel: React.FC = () => {
   const [loading, setLoading] = useState(true);
-  const { setUsersList, setUserData } = useContext(AppContext);
+  const { setUsersList, setUserData, setTheme } = useContext(AppContext);
   const history = useHistory();
 
   const getUserData = () => {
@@ -19,6 +19,7 @@ const AdminPanel: React.FC = () => {
       history.push('/login');
     }
     setUserData(data);
+    setTheme(data!.theme);
     return data;
   }
 

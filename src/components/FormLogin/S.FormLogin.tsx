@@ -1,5 +1,8 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
+import { slideInDown } from 'react-animations';
+
+const slideInDownEffect = keyframes`${slideInDown}`;
 
 class Styled {
 
@@ -43,6 +46,7 @@ class Styled {
   Img = styled.img`
     width: 80%;
     height: 100%;
+    animation: 1s ${slideInDownEffect};
   `;
 
   DivButtons = styled.div`
@@ -59,12 +63,13 @@ class Styled {
     color: ${(props) => props.theme.colors.primary};
     height: 40%;
     width: 50%;
-    background-color: ${(props) => props.theme.colors.oposite};
     margin-right: 1%;
+    background-color: ${(props) => props.disabled ? 'gray' : props.theme.colors.oposite};
+    color: ${(props) => props.disabled ? 'lighgray' : props.theme.colors.primary};
 
     &:hover {
-      background-color: ${(props) => props.theme.colors.primary};
-      color: ${(props) => props.theme.colors.text};
+      background-color: ${(props) => props.disabled ? 'gray' : props.theme.colors.primary};
+      color: ${(props) => props.disabled ? 'lighgray' : props.theme.colors.oposite};
     }
   `;
 

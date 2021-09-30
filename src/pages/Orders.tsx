@@ -12,7 +12,7 @@ const socket = io('http://localhost:3002/');
 
 const Orders: React.FC= () => {
   const [loading, setLoading] = useState(true);
-  const { userData, setUserData, setSales } = useContext(AppContext);
+  const { userData, setUserData, setSales, setTheme } = useContext(AppContext);
   const history = useHistory();
 
   const getUserData = () => {
@@ -21,6 +21,7 @@ const Orders: React.FC= () => {
       history.push('/login');
     }
     setUserData(data);
+    setTheme(data!.theme);
     return data;
   }
 

@@ -21,6 +21,8 @@ interface IAppContext {
   setSales: React.Dispatch<React.SetStateAction<Array<ISale>>>;
   sale: ISaleById | undefined;
   setSale: React.Dispatch<React.SetStateAction<ISaleById | undefined>>;
+  theme: boolean;
+  setTheme: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface IUser {
@@ -29,6 +31,7 @@ interface IUser {
   name: string;
   role: role;
   token: string;
+  theme: boolean;
 }
 
 interface INewUser {

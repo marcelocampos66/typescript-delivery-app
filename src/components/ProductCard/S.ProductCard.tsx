@@ -1,4 +1,7 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import { zoomIn } from 'react-animations';
+
+const zoomInEffect = keyframes`${zoomIn}`;
 
 class Styled {
 
@@ -9,6 +12,7 @@ class Styled {
     margin: 1% 1%;
     width: 20%;
     height: 50vh;
+    animation: 0.5s ${zoomInEffect};
   `;
 
   Img = styled.img`

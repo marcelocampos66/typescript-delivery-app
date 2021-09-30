@@ -6,7 +6,7 @@ class Styled {
     width: 100%;
     border: 1px solid #ddd;
     padding: 8px;
-
+    color: ${(props) => props.theme.colors.text};
     background-color: ${(props) => props.theme.colors.background};
   `;
 

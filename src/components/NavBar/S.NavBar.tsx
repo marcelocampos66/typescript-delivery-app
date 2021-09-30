@@ -16,14 +16,15 @@ class Styled {
   DivOptions = styled.div`
     display: flex;
     height: 100%;
-    width: 75%;
+    width: 70%;
   `;
 
   DivLogout = styled.div`
     display: flex;
     height: 100%;
-    width: 25%;
+    width: 30%;
     justify-content: space-between;
+    align-items: center;
   `;
 
   DivName = styled.div`

@@ -14,6 +14,7 @@ const Provider: React.FC = ({ children }) => {
   const [sellers, setSellers] = useState<Array<ISeller> | []>(DEFAULT_STATE.sellers);
   const [sales, setSales] = useState<Array<ISale> | []>(DEFAULT_STATE.sales);
   const [sale, setSale] = useState<ISaleById | undefined>(DEFAULT_STATE.sale);
+  const [theme, setTheme] = useState(DEFAULT_STATE.theme);
 
   const contextValue = {
     loading,
@@ -38,6 +39,8 @@ const Provider: React.FC = ({ children }) => {
     setSales,
     sale,
     setSale,
+    theme,
+    setTheme,
   };
 
   return (

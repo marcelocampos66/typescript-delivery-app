@@ -74,6 +74,7 @@ const CardList: React.FC = () => {
       {
         products.map((product) => (
           <Card
+            key={ product.id }
             product={ product }
             handleClick={ handleClick }
           />

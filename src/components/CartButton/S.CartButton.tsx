@@ -1,4 +1,7 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import { pulse } from 'react-animations';
+
+const pulseEffect = keyframes`${pulse}`;
 
 class Styled {
 
@@ -20,7 +23,9 @@ class Styled {
     justify-content: center;
     align-items: center;
 
-    
+    &:hover {
+      animation: 0.5s ${pulseEffect};
+    }
   `;
 
   Button = styled.button`
