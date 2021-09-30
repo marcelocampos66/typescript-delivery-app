@@ -18,7 +18,13 @@ interface Props {
 
 const OrderDetails: React.FC<Props> = ({ match: { params: { id } } }) => {
   const [loading, setLoading] = useState(true);
-  const { userData, setUserData, setCart, setSale } = useContext(AppContext);
+  const {
+    userData,
+    setUserData,
+    setCart,
+    setSale,
+    setTheme,
+  } = useContext(AppContext);
   const history = useHistory();
 
   const getUserData = () => {
@@ -27,6 +33,7 @@ const OrderDetails: React.FC<Props> = ({ match: { params: { id } } }) => {
       history.push('/login');
     }
     setUserData(data);
+    setTheme(data!.theme);
     return data;
   }
 

@@ -31,6 +31,7 @@ interface IUser {
   name: string;
   role: role;
   token: string;
+  theme: boolean;
 }
 
 interface INewUser {

@@ -10,7 +10,7 @@ import Helpers from '../helpers/Helpers';
 
 const Products: React.FC = () => {
   const [loading, setLoading] = useState(true);
-  const { setProducts, setUserData } = useContext(AppContext);
+  const { setProducts, setUserData, setTheme } = useContext(AppContext);
   const history = useHistory();
 
   const getUserData = () => {
@@ -19,6 +19,7 @@ const Products: React.FC = () => {
       history.push('/login');
     }
     setUserData(data);
+    setTheme(data!.theme);
     return data;
   }
 

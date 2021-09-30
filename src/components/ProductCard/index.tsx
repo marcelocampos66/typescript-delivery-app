@@ -52,6 +52,7 @@ const Card: React.FC<Props> = ({ product, handleClick }) => {
           <Styled.Input
             type="text"
             value={ getQuantity() === undefined ? 0 : getQuantity() }
+            onChange={ () => {} }
           />
           <Styled.RButton
             onClick={

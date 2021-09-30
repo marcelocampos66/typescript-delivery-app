@@ -21,7 +21,7 @@ class Styled {
     border-radius: 15px;
     box-shadow: ${(props) => props.direction ? 'none' : '0px 0px 10px rgba(0,0,0,0.25)'};
 
-    animation: 1s ${zoomInEffect};
+    animation: 1s ${(props) => props.direction ? 'none' : zoomInEffect };
 
     background-color: ${(props) => props.theme.colors.primary};
   `;

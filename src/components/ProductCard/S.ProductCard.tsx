@@ -12,7 +12,7 @@ class Styled {
     margin: 1% 1%;
     width: 20%;
     height: 50vh;
-    animation: 1s ${zoomInEffect};
+    animation: 0.5s ${zoomInEffect};
   `;
 
   Img = styled.img`

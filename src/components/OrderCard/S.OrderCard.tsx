@@ -17,7 +17,7 @@ class Styled {
     margin: 1%;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border: 1px solid #B1C2BE;
-    animation: 1s ${zoomInEffect};
+    animation: 0.5s ${zoomInEffect};
   `; 
 
   DivCard = styled.div`

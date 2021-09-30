@@ -11,7 +11,7 @@ import Api from '../services/Api';
 
 const Checkout: React.FC = () => {
   const [loading, setLoading] = useState(true);
-  const { setCart, setUserData, setSellers } = useContext(AppContext);
+  const { setCart, setUserData, setSellers, setTheme } = useContext(AppContext);
   const history = useHistory();
 
   const getUserData = () => {
@@ -20,6 +20,7 @@ const Checkout: React.FC = () => {
       history.push('/login');
     }
     setUserData(data);
+    setTheme(data!.theme);
     return data;
   }
 
