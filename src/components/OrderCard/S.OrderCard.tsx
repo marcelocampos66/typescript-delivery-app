@@ -1,5 +1,8 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
+import { zoomIn } from 'react-animations';
+
+const zoomInEffect = keyframes`${zoomIn}`;
 
 interface Props {
   status: string;
@@ -14,6 +17,7 @@ class Styled {
     margin: 1%;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border: 1px solid #B1C2BE;
+    animation: 1s ${zoomInEffect};
   `; 
 
   DivCard = styled.div`

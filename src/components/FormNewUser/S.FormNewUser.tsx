@@ -1,9 +1,12 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
+import { zoomIn } from 'react-animations';
 
 interface Props {
   direction: boolean;
 }
+
+const zoomInEffect = keyframes`${zoomIn}`;
 
 class Styled {
 
@@ -17,6 +20,8 @@ class Styled {
     border: ${(props) => props.direction ? 'none' : '1px solid black'};
     border-radius: 15px;
     box-shadow: ${(props) => props.direction ? 'none' : '0px 0px 10px rgba(0,0,0,0.25)'};
+
+    animation: 1s ${zoomInEffect};
 
     background-color: ${(props) => props.theme.colors.primary};
   `;

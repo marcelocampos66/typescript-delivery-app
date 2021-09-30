@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import AppContext from './context/AppContext';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Products from './pages/Products';
@@ -11,9 +12,9 @@ import { ThemeProvider } from 'styled-components';
 import { light, dark } from './GlobalStyle/Theme';
 import './App.css';
 
-const theme = true;
-
 function App() {
+  const { theme } = useContext(AppContext);
+
   return (
     <ThemeProvider theme={ theme ? light : dark }>
       <Switch>
