@@ -6,9 +6,8 @@ class Styled {
     border-radius: 10px;
     border: 1px solid #0000001A;
     box-shadow: 0px 10px 10px 0px #0000001A;
-    flex-basis: 20%;
     margin: 1% 1%;
-    width: 25%;
+    width: 20%;
     height: 50vh;
   `;
 
@@ -18,7 +17,6 @@ class Styled {
   `;
 
   Input = styled.input`
-    display: initial;
     text-align: center;
     width: 30px;
     height: 50%;
@@ -36,7 +34,6 @@ class Styled {
     display: flex;
     flex-direction: column;
     height: 30%;
-    bottom: 0;
   `;
 
   DivNameContainer = styled.div`

@@ -1,7 +1,7 @@
 import React from 'react';
 import Styled from './S.Container';
 
-const Container: React.FC = ({ children }) => {
+const Container: React.FC = ({ children}) => {
   return (
     <Styled.Main>
       { children }

@@ -23,7 +23,6 @@ class Styled {
     display: flex;
     height: 100%;
     width: 25%;
-    // flex-basis: auto;
     justify-content: space-between;
   `;
 

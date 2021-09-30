@@ -15,11 +15,9 @@ export const dark: ITheme = {
   colors: {
     primary: '#282F44',
     secondary: '#7E7F9A',
-    third: '#7E7F9A',
+    third: '#1B264F',
     oposite: '#ffffff',
     text: '#ffffff',
     background: '#191D32',
   },
 }
-
-// secondary: '#EAF1EF',

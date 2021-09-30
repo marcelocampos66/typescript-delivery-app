@@ -29,47 +29,48 @@ const OrderCard: React.FC<Props> = ({ sale }) => {
   } = sale;
 
   const statusDiv = () => (
-    <div>
-      <p>
+    <Styled.DivStatus>
+      <Styled.PStatus status={status}>
         { status }
-      </p>
-    </div>
+      </Styled.PStatus>
+    </Styled.DivStatus>
   );
 
   const addressDiv = () => (
-    <div>
+    <Styled.DivAddress>
       <p>
         {`${adress}, ${addressNumber}`}
       </p>
-    </div>
+    </Styled.DivAddress>
   );
 
   const dataValueDiv = () => (
-    <div>
-      <p>
-        { Helpers.formatDate(date) }
-      </p>
-      <p>
+    <Styled.DivDatePrice>
+      <Styled.P>
+        { Helpers.formatDate(date).split(' ')[0] }
+      </Styled.P>
+      <Styled.P>
         { Helpers.formatPrice(price) }
-      </p>
-    </div>
+      </Styled.P>
+    </Styled.DivDatePrice>
   );
 
   return (
     <Styled.Link to={ `/${role}/orders/${id}` }>
       <Styled.DivCard>
-        <div>
-          <div>
-            <p>
-              { `Pedido: ${Helpers.formatOrderNumber(id)}` }
-            </p>
-          </div>
-          <div>
+        <Styled.DivOrderNumber>
+          <p>Pedido</p>
+          <p>
+            { Helpers.formatOrderNumber(id) }
+          </p>
+        </Styled.DivOrderNumber>
+        <Styled.DivContainer>
+          <Styled.DivInfo>
             { statusDiv() }
             { dataValueDiv() }
-          </div>
-        </div>
-        { role === 'seller' && addressDiv() }
+          </Styled.DivInfo>
+          { role === 'seller' && addressDiv() }
+        </Styled.DivContainer>
       </Styled.DivCard>
     </Styled.Link>
   );

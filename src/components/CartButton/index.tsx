@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import AppContext from '../../context/AppContext';
 import Helpers from '../../helpers/Helpers';
+import cartImg from '../../images/cart.png'
 import Styled from './S.CartButton';
 
 const CartButton: React.FC = () => {
@@ -29,6 +30,10 @@ const CartButton: React.FC = () => {
         onClick={ () => redirectToCheckout() }
       >
         { totalCart }
+        <Styled.Img
+          src={ cartImg }
+          alt="cart-button"
+        />
       </Styled.Button>
     </Styled.Div>
   );

@@ -33,7 +33,6 @@ const Card: React.FC<Props> = ({ product, handleClick }) => {
       <Styled.Img
         src={ image }
         alt={ name }
-        // style={{ width: '100px', height: '100px' }}
       />
       </Styled.DivImgContainer>
       <Styled.DivCardFooter>

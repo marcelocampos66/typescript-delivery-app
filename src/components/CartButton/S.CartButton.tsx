@@ -3,8 +3,6 @@ import styled from 'styled-components';
 class Styled {
 
   Div = styled.div`
-    background-color: ${(props) => props.theme.colors.oposite};
-    color: ${(props) => props.theme.colors.text};
     border-radius: 100%;
     border: 0;
     cursor: pointer;
@@ -18,28 +16,35 @@ class Styled {
     z-index: 998;
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    &:hover {
-      background-color: white;
-      color: black;
-      border: 1px solid black;
-    }
+    
   `;
 
   Button = styled.button`
-    background-color: transparent;
-    color: ${(props) => props.theme.colors.primary};
     border-radius: 100%;
     border: 0;
     height: 100%;
     width: 100%;
+    margin-top: 5%;
+    font-weight: 700;
+    background-color: ${(props) => props.theme.colors.secondary};
+    color: ${(props) => props.theme.colors.text};
 
     &:hover {
-      background-color: white;
-      color: ${(props) => props.theme.colors.oposite};
+      background-color: ${(props) => props.theme.colors.third};
+      color: black;
+      border: 1px solid ${(props) => props.theme.colors.third};
     }
+  `;
+
+  Img = styled.img`
+    height: 100%;
+    width: 100%;
+    margin-bottom: 15%;
+    position: static;
   `;
 
 }

@@ -5,7 +5,7 @@ class Styled {
   Table = styled.table`
     width: 100%;
     margin-top: 1%;
-
+    color: ${(props) => props.theme.colors.text};
     background-color: ${(props) => props.theme.colors.background};
   `;
 
@@ -21,14 +21,14 @@ class Styled {
   `;
 
   Td = styled.td`
-    border: 1px solid #ddd;
+    border: 1px solid ${(props) => props.theme.colors.secondary};
     font-size: 12px;
     padding: 8px;
     width: 100px;
   `;
 
   Th = styled.th`
-    border: 1px solid #ddd;
+    border: 1px solid ${(props) => props.theme.colors.secondary};
     font-size: 12px;
     padding: 8px;
     width: 100px;

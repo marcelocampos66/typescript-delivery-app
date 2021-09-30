@@ -5,30 +5,30 @@ class Styled {
   Table = styled.table`
     width: 100%;
     margin-top: 1%;
-
+    color: ${(props) => props.theme.colors.text};
     background-color: ${(props) => props.theme.colors.background};
   `;
 
   Button = styled.button`
     width: 30%;
-    background-color: ${(props) => props.theme.colors.oposite};
+    background-color: ${(props) => props.disabled ? 'gray' : props.theme.colors.oposite};
     color: ${(props) => props.theme.colors.primary};
 
     &:hover {
-      background-color: ${(props) => props.theme.colors.primary};
+      background-color: ${(props) => props.disabled ? 'gray' : props.theme.colors.primary};
       color: ${(props) => props.theme.colors.oposite};
     }
   `;
 
   Td = styled.td`
-    border: 1px solid #ddd;
+    border: 1px solid ${(props) => props.theme.colors.secondary};
     font-size: 12px;
     padding: 8px;
     width: 100px;
   `;
 
   Th = styled.th`
-    border: 1px solid #ddd;
+    border: 1px solid ${(props) => props.theme.colors.secondary};
     font-size: 12px;
     padding: 8px;
     width: 100px;
