@@ -2,7 +2,7 @@
 
 [![Generic badge](https://img.shields.io/badge/Develop-TypeScript-blue?style=for-the-badge&logo=appveyor)](https://shields.io/)
 [![Generic badge](https://img.shields.io/badge/Develop-React-blue?style=for-the-badge&logo=appveyor)](https://shields.io/)
-[![Generic badge](https://img.shields.io/badge/Develop-Styled-Components-purple?style=for-the-badge&logo=appveyor)](https://shields.io/)
+[![Generic badge](https://img.shields.io/badge/Develop-Styled%20Components-purple?style=for-the-badge&logo=appveyor)](https://shields.io/)
  
 <h4>Essa aplicação se trata de uma refatoração e reestruturação de um projeto full-stack de conclusão de módulo realizado na Trybe.</h4>
   
