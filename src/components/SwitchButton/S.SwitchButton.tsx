@@ -15,7 +15,7 @@ class Styled {
     width: 42px;
     height: 26px;
     border-radius: 15px;
-    background: #bebebe;
+    background: ${(props) => props.theme.colors.secondary};
     cursor: pointer;
     &::after {
       content: "";
@@ -37,7 +37,7 @@ class Styled {
     width: 42px;
     height: 26px;
     &:checked + ${this.CheckBoxLabel} {
-      background: #4fbe79;
+      background: ${(props) => props.theme.colors.secondary};
       &::after {
         content: "";
         display: block;
