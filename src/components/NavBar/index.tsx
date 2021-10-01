@@ -1,12 +1,11 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import AppContext from '../../context/AppContext';
-import Switch from 'react-switch';
+import SwitchButton from '../SwitchButton';
 import Styled from './S.NavBar';
-import Helpers from '../../helpers/Helpers';
 
 const Navbar: React.FC = () => {
-  const { userData, theme, setTheme }= useContext(AppContext);
+  const { userData }= useContext(AppContext);
   const history = useHistory();
 
   const fieldsByRole = {
@@ -27,13 +26,6 @@ const Navbar: React.FC = () => {
   const logout = () => {
     localStorage.removeItem('user');
     history.push('/login');
-  }
-
-  const onClick = () => {
-    const data = Helpers.getDataFromStorage();
-    data!.theme = !theme;
-    localStorage.setItem('user', JSON.stringify(data));
-    setTheme(!theme);
   }
 
   if (!userData) return (<p>Loading...</p>);
@@ -64,14 +56,7 @@ const Navbar: React.FC = () => {
               : userData!.name
           }
         </Styled.DivName>
-        <Switch
-          onChange={ () => onClick() }
-          checked={ !theme }
-          checkedIcon={ true }
-          uncheckedIcon={ true }
-          onColor={ '#1B264F' }
-          offColor={ '#ddd' }
-        />
+        <SwitchButton />
         <Styled.Button
           onClick={ () => logout() }
         >
