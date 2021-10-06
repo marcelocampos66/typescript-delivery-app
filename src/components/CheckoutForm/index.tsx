@@ -37,10 +37,10 @@ const CheckoutForm: React.FC = () => {
 
   const handleClick = async () => {
     const saleData = Helpers.mountSaleData(saleInfo, userData!.id, cart);
-    const saleId = await Api.registerOrder(saleData, cart, userData!.token);
+    const sale = await Api.registerOrder(saleData, cart, userData!.token);
     localStorage.setItem('cart', JSON.stringify([]));
     setSaleInfo(initialState);
-    history.push(`/customer/orders/${saleId}`);
+    history.push(`/customer/orders/${sale.id}`);
   };
   
   return (
