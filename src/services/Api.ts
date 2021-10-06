@@ -22,7 +22,7 @@ class Api {
   }
 
   public registerUser(newUser: INewUser) {
-    const endpoint = `${this.url}/users/register`;
+    const endpoint = `${this.url}/users`;
     return fetch(endpoint, {
       method: 'POST',
       headers: {
@@ -36,7 +36,7 @@ class Api {
   }
 
   public getAllProducts(token: string) {
-    const endpoint = `${this.url}/customer/products`;
+    const endpoint = `${this.url}/products`;
     return fetch(endpoint, {
       method: 'GET',
       headers: {
@@ -50,7 +50,7 @@ class Api {
   };
 
   public getAllSellers(token: string) {
-    const endpoint = `${this.url}/sellers`;
+    const endpoint = `${this.url}/users/sellers`;
     return fetch(endpoint, {
       method: 'GET',
       headers: {
@@ -66,7 +66,8 @@ class Api {
   public registerOrder(
     orderData: IOrderData, listItens: Array<ICartItem>, token: string,
   ) {
-    const endpoint = `${this.url}/customer/checkout`;
+    console.log({ orderData, listItens });
+    const endpoint = `${this.url}/sales`;
     return fetch(endpoint, {
       method: 'POST',
       headers: {

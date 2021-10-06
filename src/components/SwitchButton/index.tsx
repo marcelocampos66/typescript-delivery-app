@@ -20,6 +20,7 @@ const SwitchButton: React.FC = () => {
           id="checkbox"
           type="checkbox"
           onClick={ () => onClick() }
+          checked={ !theme }
         />
         <Styled.CheckBoxLabel htmlFor="checkbox" />
       </Styled.CheckBoxWrapper>

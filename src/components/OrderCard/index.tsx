@@ -1,19 +1,18 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
 import Helpers from '../../helpers/Helpers';
 import Styled from './S.OrderCard';
- 
+
 interface Props {
   sale: {
     role: string;
     id: number;
-    userId: number;
-    sellerId: number;
-    totalPrice: string;
-    deliveryAddress: string;
-    deliveryNumber: string;
-    saleDate: string;
+    total_price: string;
+    delivery_address: string;
+    delivery_number: string;
+    sale_date: string;
     status: string;
+    user: IUserId;
+    seller: IUserId;
   }
 }
 
@@ -21,10 +20,10 @@ const OrderCard: React.FC<Props> = ({ sale }) => {
   const {
     role,
     id,
-    totalPrice: price,
-    deliveryAddress: adress,
-    deliveryNumber: addressNumber,
-    saleDate: date,
+    total_price: price,
+    delivery_address: adress,
+    delivery_number: addressNumber,
+    sale_date: date,
     status,
   } = sale;
 

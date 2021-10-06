@@ -79,16 +79,21 @@ interface IOrderData {
   userId: number;
 }
 
+interface ISaleProduct {
+  id: number;
+  quantity: number;
+}
+
 interface ISale {
   id: number;
-  userId: number;
-  sellerId: number;
-  totalPrice: string;
-  deliveryAddress: string;
-  deliveryNumber: string;
-  saleDate: string;
+  total_price: string;
+  delivery_address: string;
+  delivery_number: string;
+  sale_date: string;
   status: string;
-  products: Array<IProduct>;
+  user: IUserId;
+  seller: IUserId;
+  saleProduct: Array<ISaleProduct>;
 }
 
 interface ISaleInfo {
@@ -98,9 +103,10 @@ interface ISaleInfo {
 }
 
 interface IUserId {
-  email: string;
   id: number;
+  email: string;
   name: string;
+  password: string;
   role: role;
 }
 
@@ -112,25 +118,22 @@ interface ISeller {
 }
 
 interface ISaleById {
-  deliveryAddress: string;
-  deliveryNumber: string;
+  delivery_address: string;
+  delivery_number: string;
   id: number;
   products: Array<IProductWithQty>;
-  saleDate: string;
-  sellerId: number;
+  sale_date: string;
   status: string;
-  totalPrice: string;
-  userId: number;
+  total_price: number;
   user: IUserId;
-  seller: ISeller;
+  seller: IUserId;
 }
 
 interface IProductWithQty {
   id: number;
   name: string;
   price: string;
-  url_image: string;
-  salesProducts: { quantity: number; };
+  quantity: number;
 }
 
 interface IInputs {

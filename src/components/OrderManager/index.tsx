@@ -9,7 +9,7 @@ const socket = io('http://localhost:3002/');
 
 const OrderManager: React.FC = () => {
   const { userData, sale, setSale } = useContext(AppContext);
-  const rawDate = Helpers.formatDate(sale!.saleDate);
+  const rawDate = Helpers.formatDate(sale!.sale_date);
 
   const handleClick = async (status: string) => {
     await Api.changeOrderStatus(sale!.id, status);
