@@ -8,7 +8,7 @@ import Api from '../services/Api';
 import Helpers from '../helpers/Helpers';
 import AppContext from '../context/AppContext';
 
-const socket = io('http://localhost:3002/');
+const socket = io('http://localhost:3001/');
 
 const Orders: React.FC= () => {
   const [loading, setLoading] = useState(true);
