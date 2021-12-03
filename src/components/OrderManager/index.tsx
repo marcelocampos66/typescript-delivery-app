@@ -5,7 +5,7 @@ import Helpers from '../../helpers/Helpers';
 import Api from '../../services/Api';
 import Styled from './S.OrderManager';
 
-const socket = io('http://localhost:3002/');
+const socket = io('http://localhost:3001/');
 
 const OrderManager: React.FC = () => {
   const { userData, sale, setSale } = useContext(AppContext);

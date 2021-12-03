@@ -10,7 +10,7 @@ import Api from '../services/Api';
 import Helpers from '../helpers/Helpers';
 import AppContext from '../context/AppContext';
 
-const socket = io('http://localhost:3002/');
+const socket = io('http://localhost:3001/');
 
 interface Props {
   match: { params: { id: string; } };
